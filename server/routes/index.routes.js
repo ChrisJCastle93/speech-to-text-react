@@ -38,9 +38,11 @@ const speechToText = new SpeechToTextV1({
 router.post("/test", async (req, res, next) => {
   // console.log(req.files.file.data.arrayBuffer());
 
-  console.log(req.body);
+  // console.log(req.file);
+  console.log(req.files.file.data);
+  // console.log(req.body);
 
-  await fs.writeFile('paul121.webm', req.body['file'], () => {
+  await fs.writeFile('paul12111.webm', req.files.file.data, () => {
     console.log('file created')
   })
 
@@ -53,8 +55,8 @@ router.post("/test", async (req, res, next) => {
 
   speechToText
     .recognize({
-      audio: fs.createReadStream("./paul121.webm"),
-      contentType: "audio/wav",
+      audio: fs.createReadStream("./paul12111.webm"),
+      contentType: "audio/webm",
     })
     .then((response) => {
       const result = JSON.stringify(response.result.results[0].alternatives[0].transcript, null, 2);
@@ -63,7 +65,6 @@ router.post("/test", async (req, res, next) => {
     .catch((err) => {
       console.log(err);
     });
-  // res.json("BACKEND RESULT SENT");
 });
 
 router.use("/auth", authRoutes);
