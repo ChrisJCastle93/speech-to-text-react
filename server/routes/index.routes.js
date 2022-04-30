@@ -11,12 +11,10 @@ const speechToText = new SpeechToTextV1({
 });
 
 const params = {
-  // From file
   audio: fs.createReadStream("./../test.wav"),
   contentType: "audio/l16; rate=44100",
 };
 
-/* GET home page */
 router.get("/", async (req, res, next) => {
   speechToText
     .recognize(params)
