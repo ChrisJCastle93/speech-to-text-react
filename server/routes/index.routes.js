@@ -51,5 +51,4 @@ router.get("/search", (req, res) => {
 
 router.use("/auth", authRoutes);
 
-router.use("/", search);
 module.exports = router;
