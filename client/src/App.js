@@ -1,36 +1,32 @@
-import { Routes, Route } from 'react-router-dom';
-import React from 'react';
-import {Navbar} from './components/Navbar';
-import Home from './components/Home';
-import SearchResults from './components/SearchResults';
-import ProductDetail from './components/ProductDetail';
-
-
+import "./App.css";
+import { BrowserRouter, Routes, Route} from "react-router-dom";
+import Home from "./views/Home";
+import Test from "./components/Microphone";
+import SearchContainer from "./views/SearchContainer";
+import SearchResults from "./views/SearchResults";
+import { ChakraProvider } from "@chakra-ui/react";
+import { useState } from "react";
 
 function App() {
+  let [searchResultsArray, setSearchResultsArray] = useState([]);
 
-
-const handleSearchResults =(data)=>{
-console.log("searchResults",data)
-}
+  const handleSearchResults = (searchResults) => {
+    setSearchResultsArray(searchResults.data);
+  };
 
   return (
-  
-    <div>
-        <Navbar handleSearchResults={handleSearchResults}/>
-
-      <div>
-        <Routes>
-        <Route path="/" element={<Home />} />
-          <Route path="/search/:?" element={<SearchResults />} />
-          <Route path="/search/:product._id" element={<ProductDetail />} />
-        </Routes>
-      </div>
-      <footer>
-        <p>This is made by Anabelle, Chris and Caro</p>
-      </footer> 
-    </div> 
-
+    <BrowserRouter>
+      <ChakraProvider>
+        <div className="App">
+          <Routes>
+            <Route path="/" element={<Home />} />
+            <Route path="/test" element={<Test />} />
+            <Route path="/search" element={<SearchContainer handleSearchResults={handleSearchResults} />} />
+            <Route path="/search/results" element={<SearchResults searchResultsArray={searchResultsArray} />} />
+          </Routes>
+        </div>
+      </ChakraProvider>
+    </BrowserRouter>
   );
 }
 export default App;
