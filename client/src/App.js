@@ -1,4 +1,4 @@
-import "./App.css";
+
 import { BrowserRouter, Routes, Route} from "react-router-dom";
 import Home from "./views/Home";
 import Test from "./components/Microphone";
@@ -15,7 +15,7 @@ function App() {
   };
 
   return (
-    <BrowserRouter>
+
       <ChakraProvider>
         <div className="App">
           <Routes>
@@ -26,8 +26,7 @@ function App() {
           </Routes>
         </div>
       </ChakraProvider>
-    </BrowserRouter>
+
   );
 }
-
 export default App;
