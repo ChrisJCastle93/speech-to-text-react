@@ -23,6 +23,7 @@ export default function SearchContainer(props) {
   };
 
   useEffect(() => {
+    console.log('useEffect, speechDone?', speechDone)
     if (speechDone) {
       searchAmazon();
     }
@@ -33,6 +34,7 @@ export default function SearchContainer(props) {
     const queryString = new URLSearchParams({ q: searchTerm }).toString();
     const searchResults = await axios.get(`http://localhost:5005/api/search?${queryString}`);
     props.handleSearchResults(searchResults);
+    console.log('navigating to search results')
     navigate("/search/results");
   };
 
