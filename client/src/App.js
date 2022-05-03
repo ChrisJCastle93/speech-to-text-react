@@ -1,20 +1,22 @@
-import {  Routes, Route } from "react-router-dom";
-import React from "react";
-import Home from './views/Home'
-import axios from "axios";
-import Test from './views/Test'
+
+import { Routes, Route} from "react-router-dom";
+import Home from "./views/Home";
+import Test from "./components/Microphone";
+import SearchContainer from "./views/SearchContainer";
+import SearchResults from "./views/SearchResults";
+import { ChakraProvider } from "@chakra-ui/react";
+import { useState } from "react";
 import { Signup } from "./views/auth/Signup";
 import { Login } from "./views/auth/Login";
 import { useNavigate } from 'react-router-dom';
 import apiService from "./views/services/auth";
 
-
 function App() {
-  console.log(process.env.REACT_APP_PORT)
+  let [searchResultsArray, setSearchResultsArray] = useState([]);
 
   const navigate = useNavigate();
 
-  const [loggedInUser, setLoggedInUser] = React.useState(null);
+  const [loggedInUser, setLoggedInUser] = useState(null);
 
   // const getLoggedInUser = async () => {
   //   const data = await axios.get('/api/auth/loggedin');
@@ -38,20 +40,23 @@ function App() {
   //   })
   // }
 
+  const handleSearchResults = (searchResults) => {
+    setSearchResultsArray(searchResults.data);
+  };
+
   return (
-      <div className="App">
-      <h1>{loggedInUser ? loggedInUser.username : ""}</h1>
-      <button type="button" onClick={ logoutHandler } >Logout</button>
 
+      <ChakraProvider>
+        <div className="App">
+          <Routes>
+            <Route path="/" element={<Home />} />
+            <Route path="/test" element={<Test />} />
+            <Route path="/search" element={<SearchContainer handleSearchResults={handleSearchResults} />} />
+            <Route path="/search/results" element={<SearchResults searchResultsArray={searchResultsArray} />} />
+          </Routes>
+        </div>
+      </ChakraProvider>
 
-        <Routes>
-          <Route path="/" element={ <Home /> } />
-          <Route path="/test" element={ <Test  /> } />
-          <Route path="/signup" element={ <Signup  /> } />
-          <Route path="/login" element={ <Login  /> } />
-        </Routes>
-      </div>
   );
 }
-
 export default App;

@@ -5,6 +5,8 @@ const express = require("express");
 // https://www.npmjs.com/package/morgan
 const logger = require("morgan");
 
+const fileUpload = require("express-fileupload");
+
 // ℹ️ Needed when we deal with cookies (we will when dealing with authentication)
 // https://www.npmjs.com/package/cookie-parser
 const cookieParser = require("cookie-parser");
@@ -45,6 +47,7 @@ module.exports = (app) => {
   app.use(express.json());
   app.use(express.urlencoded({ extended: false }));
   app.use(cookieParser());
+  app.use(fileUpload())
 
   // ℹ️ Middleware that adds a "req.session" information and later to check that you are who you say you are 😅
   app.use(
