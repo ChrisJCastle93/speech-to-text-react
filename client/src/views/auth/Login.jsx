@@ -12,9 +12,7 @@ export const Login = (props) => {
 
   const onSubmit = async (data) => {
     const res = await apiService.login(data.username, data.password)
-    console.log(res);
-    const setUser =  await props.setLoggedInUser(data.username)
-    console.log(setUser);
+    await props.setLoggedInUser(res)
     navigate('/');
   };
 

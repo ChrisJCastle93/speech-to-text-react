@@ -1,4 +1,5 @@
 
+import React from 'react'
 import { Routes, Route} from "react-router-dom";
 import Home from "./views/Home";
 import Test from "./components/Microphone";
@@ -18,14 +19,13 @@ function App() {
 
   const [loggedInUser, setLoggedInUser] = useState(null);
 
-  // const getLoggedInUser = async () => {
-  //   const data = await axios.get('/api/auth/loggedin');
-  //   setLoggedInUser(data)
-  // }
-
-  // React.useEffect(() => {
-  //   getLoggedInUser();
-  // }, [])
+  React.useEffect(() => {
+    const fetchUser = async () => {
+      const res = await apiService.isLoggedIn()
+      console.log(res)
+    }
+    fetchUser()
+  })
 
   const logoutHandler = async () => {
     await apiService.logout();
@@ -44,6 +44,8 @@ function App() {
     setSearchResultsArray(searchResults.data);
   };
 
+  console.log(loggedInUser)
+
   return (
 
       <ChakraProvider>
@@ -51,8 +53,8 @@ function App() {
           <Routes>
             <Route path="/" element={<Home />} />
             <Route path="/test" element={<Test />} />
-            <Route path="/signup" element={<Signup />} />
-            <Route path="/login" element={<Login />} />
+            <Route path="/signup" element={<Signup setLoggedInUser={setLoggedInUser}/>} />
+            <Route path="/login" element={<Login setLoggedInUser={setLoggedInUser}/>} />
             <Route path="/search" element={<SearchContainer handleSearchResults={handleSearchResults} />} />
             <Route path="/search/results" element={<SearchResults searchResultsArray={searchResultsArray} />} />
           </Routes>

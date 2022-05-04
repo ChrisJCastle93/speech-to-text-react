@@ -19,9 +19,9 @@ class ApiService {
             });
     }
     
-    login = (email, password) => {
+    login = (username, password) => {
         return axios
-            .post(`${this.baseUrl}/api/auth/login`, { email, password }, {
+            .post(`${this.baseUrl}/api/auth/login`, { username, password }, {
                 withCredentials: true
             })
             .then(response => {
@@ -43,13 +43,11 @@ class ApiService {
             });
     }
     
-    // isLoggedIn = () => {
-    //     return axios.get(`${this.baseUrl}/api/auth/loggedin`, {
-    //         withCredentials: true
-    //     }).then(() => {
-    //         // ...
-    //     })
-    // }
+    isLoggedIn = () => {
+        return axios.get(`${this.baseUrl}/api/auth/loggedin`, {
+            withCredentials: true
+        })
+    }
 }
 
 const apiService = new ApiService()
