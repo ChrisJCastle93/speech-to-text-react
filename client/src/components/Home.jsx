@@ -28,7 +28,7 @@ function Home() {
             </div>
           </Link>
 
-          <Link to={`/search/:?`}>
+          <Link to={`/search/:`}>
             <div className="promo-container"> 
 {/* 
            Image-Tag should include src={thewaytopreselectedlamps} */}

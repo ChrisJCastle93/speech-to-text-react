@@ -55,7 +55,7 @@ function App() {
             <Route path="/login" element={<Login />} />
             <Route path="/search" element={<SearchContainer handleSearchResults={handleSearchResults} />} />
             <Route path="/search/results" element={<SearchResults searchResultsArray={searchResultsArray} />} />
-            {/* <Route path="/search/results/:id" element={<ProductDetail searchResultsArray={searchResultsArray} />} /> */}
+            {/* <Route path="/search/results/:id" element={<ProductDetail />} /> */}
           </Routes>
         </div>
       </ChakraProvider>
