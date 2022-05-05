@@ -13,7 +13,7 @@ export const Login = (props) => {
   const onSubmit = async (data) => {
     const res = await apiService.login(data.username, data.password)
     await props.setLoggedInUser(res)
-    navigate('/');
+    navigate('/profile');
   };
 
   return (
