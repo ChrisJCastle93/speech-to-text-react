@@ -25,7 +25,6 @@ function App() {
   React.useEffect(() => {
     const fetchUser = async () => {
       const res = await apiService.isLoggedIn()
-      console.log(res)
       setLoggedInUser(res.data)
     }
     fetchUser()
