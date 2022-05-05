@@ -7,9 +7,11 @@ export default function Cart() {
   let [cartData, setCartData] = useState([]);
 
   const onChangeQuantity = (value) => {
-    const searchValue = Number(value.getAttribute("data-id"));
+    const searchValue = value.getAttribute("data-id");
+    console.log('SEARCH VALUE', searchValue)
     const copiedCart = [...cartData];
-    copiedCart.find((x) => x.id == searchValue).quantity = Number(value.value);
+    console.log('copiedCart', copiedCart)
+    copiedCart.find((x) => x.id == searchValue).quantity = value.value
     setCartData(copiedCart);
     localStorage.setItem("cart", JSON.stringify(copiedCart));
   };
@@ -53,8 +55,13 @@ export default function Cart() {
 
   useEffect(() => {
     const cart = localStorage.getItem("cart");
+
+    console.log(cart)
+
+    // const newCart = [...cart]
     const parsedCart = JSON.parse(cart);
-    setCartData(parsedCart);
+    // setCartData(newCart);
+    setCartData(parsedCart)
   }, []);
 
   console.log("CART, cartData", cartData);

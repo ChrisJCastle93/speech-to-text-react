@@ -19,6 +19,8 @@ const QuantitySelect = (props) => {
 export const CartItem = (props) => {
   const { isGiftWrapping, name, description, quantity, image, currency, price, onChangeQuantity, onClickDelete, id } = props;
 
+  console.log('cart item id', id)
+
   return (
     <Flex
       direction={{
@@ -52,7 +54,7 @@ export const CartItem = (props) => {
       </Flex>
 
       {/* Mobile */}
-      <Flex
+      {/* <Flex
         mt="4"
         align="center"
         width="full"
@@ -72,7 +74,7 @@ export const CartItem = (props) => {
           }}
         />
         {/* <PriceTag price={price} currency={currency} /> */}
-      </Flex>
+      {/* </Flex> */}
     </Flex>
   );
 };
