@@ -3,13 +3,14 @@ import apiService from "../services/auth";
 // import { Link, useNavigate } from 'react-router-dom';
 import { useForm } from "react-hook-form";
 
-export const Signup = () => {
+export const Signup = (props) => {
   // const navigate = useNavigate();
   const { register, handleSubmit, formState: { errors } } = useForm();
 
   const onSubmit = async (data) => {
     const res = await apiService.signup(data.username, data.email, data.password)
     console.log(res)
+    props.setLoggedInUser(res)
   };
 
   // const [username, setUsername] = React.useState('');
