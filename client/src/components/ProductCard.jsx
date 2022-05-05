@@ -1,4 +1,6 @@
-import { AspectRatio, Box, Button, HStack, Image, Link, Skeleton, Stack, Text, useBreakpointValue, useColorModeValue } from "@chakra-ui/react";
+import { AspectRatio, Box, Button, HStack, Image, Skeleton, Stack, Text, useBreakpointValue, useColorModeValue } from "@chakra-ui/react";
+import { Link } from "react-router-dom";
+
 import * as React from "react";
 import { Rating } from "../components/Rating";
 import { PriceTag } from "../components/PriceTag";
@@ -44,11 +46,9 @@ export const ProductCard = (props) => {
           </Text>
         </HStack>
       </Stack>
-      <Stack align="center">
-        <Button colorScheme="blue" isFullWidth>
-          Add to cart
-        </Button>
-      </Stack>
+      <Link to={`/search/results/${product.asin}`}>
+         More Infooooo
+      </Link>
     </Stack>
   );
 };
