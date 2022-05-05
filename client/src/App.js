@@ -11,6 +11,7 @@ import { Signup } from "./views/auth/Signup";
 import { Login } from "./views/auth/Login";
 import { useNavigate } from 'react-router-dom';
 import apiService from "./views/services/auth";
+import Cart from "./views/Cart";
 import Profile from "./views/Profile";
 import ProductDetail from './components/ProductDetail';
 
@@ -49,6 +50,9 @@ function App() {
           <Routes>
             <Route path="/" element={<Home />} />
             <Route path="/test" element={<Test />} />
+            <Route path="/signup" element={<Signup />} />
+            <Route path="/cart" element={<Cart />} />
+            <Route path="/login" element={<Login />} />
             <Route path="/signup" element={<Signup setLoggedInUser={setLoggedInUser}/>} />
             <Route path="/login" element={<Login setLoggedInUser={setLoggedInUser}/>} />
             <Route path="/profile" element={<Profile loggedInUser={loggedInUser}/>} />
