@@ -12,6 +12,7 @@ import { Login } from "./views/auth/Login";
 import { useNavigate } from 'react-router-dom';
 import apiService from "./views/services/auth";
 import Profile from "./views/Profile";
+import ProductDetail from './components/ProductDetail';
 
 function App() {
   let [searchResultsArray, setSearchResultsArray] = useState([]);
@@ -53,7 +54,7 @@ function App() {
             <Route path="/profile" element={<Profile loggedInUser={loggedInUser}/>} />
             <Route path="/search" element={<SearchContainer handleSearchResults={handleSearchResults} />} />
             <Route path="/search/results" element={<SearchResults searchResultsArray={searchResultsArray} />} />
-            {/* <Route path="/search/results/:id" element={<ProductDetail />} /> */}
+            <Route path="/search/results/:id" element={<ProductDetail />} />
           </Routes>
         </div>
       </ChakraProvider>

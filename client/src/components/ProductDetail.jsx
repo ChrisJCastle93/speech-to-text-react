@@ -2,7 +2,6 @@ import React from 'react';
 import { useParams, Link } from 'react-router-dom';
 import axios from 'axios';
 import { useEffect, useState } from 'react';
-import { Navbar } from './Navbar';
 
 
 function ProductDetail() {
@@ -13,7 +12,7 @@ function ProductDetail() {
 
     useEffect(()=> {
 
-        axios.get(`AMAZON-API/${productId}`)
+        axios.get(`http://localhost:5005/api/search/results/${productId}`)
         .then(response =>{
             setProduct(response.data)
         })
@@ -24,11 +23,12 @@ function ProductDetail() {
   return ( 
 
     <>
-        <img src={product.image_url} alt="product"/>
-        <h2>{product.name}</h2>
-        <h3>{product.description}</h3>
-        <p>{product.ratings}</p>
-        <button>Add to checkout </button>
+    <h1>{productId}</h1>
+        <img src={product.product.main_image} alt="image"/>
+        <h2>{product.product.title}</h2>
+        <p>{product.product.feature_bullets}</p>
+        
+        <Link>Add to checkout </Link>
     </>
         )
 
