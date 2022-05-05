@@ -44,11 +44,13 @@ export const ProductCard = (props) => {
           </Text>
         </HStack>
       </Stack>
+      <Link to={`/search/results/${product.asin}?xyz`}>
       <Stack align="center">
         <Button colorScheme="blue" isFullWidth>
-          Add to cart
+         More Info
         </Button>
       </Stack>
+      </Link>
     </Stack>
   );
 };

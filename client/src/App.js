@@ -1,6 +1,6 @@
 
 import { Routes, Route} from "react-router-dom";
-import Home from "./views/Home";
+import Home from "./components/Home";
 import Test from "./components/Microphone";
 import SearchContainer from "./views/SearchContainer";
 import SearchResults from "./views/SearchResults";
@@ -55,6 +55,7 @@ function App() {
             <Route path="/login" element={<Login />} />
             <Route path="/search" element={<SearchContainer handleSearchResults={handleSearchResults} />} />
             <Route path="/search/results" element={<SearchResults searchResultsArray={searchResultsArray} />} />
+            {/* <Route path="/search/results/:id" element={<ProductDetail searchResultsArray={searchResultsArray} />} /> */}
           </Routes>
         </div>
       </ChakraProvider>
