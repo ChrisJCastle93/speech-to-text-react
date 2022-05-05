@@ -5,3 +5,4 @@ export default function home() {
     <div>HOME</div>
   )
 }
+ 

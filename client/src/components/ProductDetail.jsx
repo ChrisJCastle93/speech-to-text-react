@@ -9,7 +9,7 @@ function ProductDetail() {
 
     const [product, setProduct] = useState([]);
     const params = useParams()
-	const productId = params.productId
+	const productId = params.id
 
     useEffect(()=> {
 
@@ -17,20 +17,21 @@ function ProductDetail() {
         .then(response =>{
             setProduct(response.data)
         })
-        .catch(err => console.log(err))
+        .catch(err => console.log(err)) 
     }, [])
 
 
-  return (
+  return ( 
 
     <>
         <img src={product.image_url} alt="product"/>
         <h2>{product.name}</h2>
         <h3>{product.description}</h3>
         <p>{product.ratings}</p>
-        <Link to="AMAZON-API/${productId}">Go check it out at Amazon </Link>
+        <button>Add to checkout </button>
     </>
         )
 
 }
+
 export default ProductDetail

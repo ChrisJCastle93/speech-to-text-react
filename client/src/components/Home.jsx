@@ -5,13 +5,13 @@ import header from '../assets/header.jpeg'
 
 function Home() {
   return (
-<div className='home'>
+<div>
    
-      <h1>Lamp Daddy</h1>
+      <h1>Lamp Daddy</h1> 
 
  <section id="header">
         <div>
-          <image className='headerImage' src={header} alt="ambience-picture" />
+          <img className='headerImage' src={header} alt="ambience-picture" />
         </div>
       </section>
 
@@ -28,10 +28,10 @@ function Home() {
             </div>
           </Link>
 
-          <Link to={`/search/:?`}>
+          <Link to={`/search/:`}>
             <div className="promo-container"> 
-
-           Image-Tag should include src={thewaytopreselectedlamps}
+{/* 
+           Image-Tag should include src={thewaytopreselectedlamps} */}
 
          <img className="imagePromo" alt="lamps" />
               <img className="imagePromo"  alt="lamps" />

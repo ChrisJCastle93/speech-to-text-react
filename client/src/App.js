@@ -1,7 +1,7 @@
 
 import React from 'react'
 import { Routes, Route} from "react-router-dom";
-import Home from "./views/Home";
+import Home from "./components/Home";
 import Test from "./components/Microphone";
 import SearchContainer from "./views/SearchContainer";
 import SearchResults from "./views/SearchResults";
@@ -53,6 +53,7 @@ function App() {
             <Route path="/profile" element={<Profile loggedInUser={loggedInUser}/>} />
             <Route path="/search" element={<SearchContainer handleSearchResults={handleSearchResults} />} />
             <Route path="/search/results" element={<SearchResults searchResultsArray={searchResultsArray} />} />
+            {/* <Route path="/search/results/:id" element={<ProductDetail />} /> */}
           </Routes>
         </div>
       </ChakraProvider>

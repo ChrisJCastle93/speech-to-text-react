@@ -31,7 +31,7 @@ function SearchResults() {
           </Link>
           </div>
         )
-      })}
+      })}  
     </>
   )
 }
