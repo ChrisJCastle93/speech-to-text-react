@@ -31,6 +31,7 @@ router.get("/search", (req, res) => {
 
   res.json(results.search_results)
 
+
   // const params = {
   //   api_key: "E88D8E7E60414947A17F2AD00221C1F9",
   //   type: "search",
@@ -49,6 +50,19 @@ router.get("/search", (req, res) => {
   //   });
 });
 
+router.get("/search/results/:id", (req, res) => {
+  console.log(req.params.id)
+
+  axios
+    .get(`https://api.rainforestapi.com/request?api_key=E88D8E7E60414947A17F2AD00221C1F9&type=product&amazon_domain=amazon.com&asin=${req.params.id}`)
+    .then((response) => {
+     console.log("potatoe", response)
+      res.json(response.data);
+    })
+    .catch((error) => {
+      console.log(error);
+    });
+});
 router.use("/auth", authRoutes);
 
 module.exports = router;
