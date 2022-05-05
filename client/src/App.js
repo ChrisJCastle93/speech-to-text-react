@@ -1,7 +1,7 @@
 
 import React from 'react'
 import { Routes, Route} from "react-router-dom";
-import Home from "./views/Home";
+import Home from "./components/Home";
 import Test from "./components/Microphone";
 import SearchContainer from "./views/SearchContainer";
 import SearchResults from "./views/SearchResults";
@@ -12,6 +12,7 @@ import { Login } from "./views/auth/Login";
 import { useNavigate } from 'react-router-dom';
 import apiService from "./views/services/auth";
 import Profile from "./views/Profile";
+import AuthButtonDisplay from './components/AuthButtonDisplay';
 
 function App() {
   let [searchResultsArray, setSearchResultsArray] = useState([]);
@@ -45,8 +46,9 @@ function App() {
 
       <ChakraProvider>
         <div className="App">
+        <AuthButtonDisplay loggedInUser={loggedInUser} logoutHandler={logoutHandler} />
           <Routes>
-            <Route path="/" element={<Home />} />
+            <Route path="/" element={<Home loggedInUser={loggedInUser} />} />
             <Route path="/test" element={<Test />} />
             <Route path="/signup" element={<Signup setLoggedInUser={setLoggedInUser}/>} />
             <Route path="/login" element={<Login setLoggedInUser={setLoggedInUser}/>} />

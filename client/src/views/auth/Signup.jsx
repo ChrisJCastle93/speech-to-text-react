@@ -43,7 +43,7 @@ export const Signup = (props) => {
         />
         <p>{errors.email?.message}</p>
 
-        <input
+        <input type="password"
           {...register("password", {
             required: "This is required",
             minLength: {

@@ -27,7 +27,7 @@ export const Login = (props) => {
         />
         <p>{errors.username?.message}</p>
 
-        <input
+        <input type="password"
           {...register("password", {
             required: "This is required",
             minLength: {
