@@ -3,9 +3,8 @@ import * as React from "react";
 import { FiGift } from "react-icons/fi";
 
 export const CartProductMeta = (props) => {
-  console.log("PROPS", props);
-  const { isGiftWrapping = true, image, name, description } = props;
-  console.log(image);
+  const { isGiftWrapping = true, image, name, description, id } = props;
+
   return (
     <Stack direction="row" spacing="5" width="full">
       <Image rounded="lg" width="120px" height="120px" fit="cover" src={image} alt={name} draggable="false" loading="lazy" />

@@ -1,32 +1,63 @@
-import React, { useState } from "react";
-import { Box, Stack, Heading, Flex, HStack, Link } from "@chakra-ui/react";
+import React, { useState, useEffect } from "react";
+import { Box, Stack, Heading, Flex, HStack, Link, Button } from "@chakra-ui/react";
 import { CartItem } from "../components/CartItem";
+import { CartOrderSummary } from "../components/CartOrderSummary";
 
 export default function Cart() {
-  let [cartItems, setCartItems] = useState([]);
+  let [cartData, setCartData] = useState([]);
 
-  const fakeCart = [
-    {
-      id: 1,
-      image:"https://www.fillmurray.com/360/360",
-      name:"Bill Murray",
-    },
-    {
-      id: 2,
-      image:"https://www.fillmurray.com/370/370",
-      name:"Bill Murray 2",
-    },
-    {
-      id: 3,
-      image:"https://www.fillmurray.com/380/380",
-      name:"Bill Murray 3",
-    },
-  ];
+  const onChangeQuantity = (value) => {
+    const searchValue = Number(value.getAttribute("data-id"));
+    const copiedCart = [...cartData];
+    copiedCart.find((x) => x.id == searchValue).quantity = Number(value.value);
+    setCartData(copiedCart);
+    localStorage.setItem("cart", JSON.stringify(copiedCart));
+  };
 
-  localStorage.setItem("cart", JSON.stringify(fakeCart));
-  const cart = localStorage.getItem("cart");
-  const cartData = JSON.parse(cart);
-  console.log("CARTDATA", cartData);
+  const onClickDelete = (value) => {
+    const copiedCart = [...cartData];
+    const updatedCart = copiedCart.filter((x) => x.id !== value);
+    setCartData(updatedCart);
+    localStorage.setItem("cart", JSON.stringify(updatedCart));
+  };
+
+  const resetCart = () => {
+    const fakeCart = [
+      {
+        id: 1,
+        image: "https://www.fillmurray.com/360/360",
+        name: "Bill Murray",
+        quantity: 1,
+        price: 5,
+      },
+      {
+        id: 2,
+        image: "https://www.fillmurray.com/370/370",
+        name: "Bill Murray 2",
+        quantity: 1,
+        price: 10,
+      },
+      {
+        id: 3,
+        image: "https://www.fillmurray.com/380/380",
+        name: "Bill Murray 3",
+        quantity: 1,
+        price: 20,
+      },
+    ];
+    localStorage.setItem("cart", JSON.stringify(fakeCart));
+    const cart = localStorage.getItem("cart");
+    const parsedCart = JSON.parse(cart);
+    setCartData(parsedCart);
+  };
+
+  useEffect(() => {
+    const cart = localStorage.getItem("cart");
+    const parsedCart = JSON.parse(cart);
+    setCartData(parsedCart);
+  }, []);
+
+  console.log("CART, cartData", cartData);
 
   return (
     <div>
@@ -68,18 +99,19 @@ export default function Cart() {
             flex="2"
           >
             <Heading fontSize="2xl" fontWeight="extrabold">
-              Shopping Cart (3 items)
+              Shopping Cart ({cartData.length} items)
             </Heading>
+            <Button onClick={resetCart}>Reset Cart</Button>
 
             <Stack spacing="6">
               {cartData.map((item) => (
-                <CartItem key={item.id} {...item} />
+                <CartItem key={item.id} {...item} onClickDelete={onClickDelete} onChangeQuantity={onChangeQuantity} />
               ))}
             </Stack>
           </Stack>
 
           <Flex direction="column" align="center" flex="1">
-            {/* <CartOrderSummary /> */}
+            <CartOrderSummary cartData={cartData} />
             <HStack mt="6" fontWeight="semibold">
               {/* <p>or</p> */}
               {/* <Link color={mode("blue.500", "blue.200")}>Continue shopping</Link> */}
