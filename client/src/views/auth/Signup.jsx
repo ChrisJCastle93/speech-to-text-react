@@ -20,7 +20,7 @@ export const Signup = (props) => {
 
   console.log(errors);
 
-  navigate("/");
+  navigate("/profile");
 
   //  const submitUserRegisteration= ()=>{
   //     signup(username,email,password).then(user=>{
