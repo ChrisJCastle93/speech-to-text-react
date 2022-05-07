@@ -1,11 +1,9 @@
-import { CloseButton, Flex, Select, useColorModeValue } from "@chakra-ui/react";
+import { CloseButton, Link, Flex, Select, useColorModeValue } from "@chakra-ui/react";
 import * as React from "react";
 import { PriceTag } from "./PriceTag";
 import { CartProductMeta } from "./CartProductMeta";
 
 const QuantitySelect = (props) => {
-
-
   return (
     <Select maxW="64px" aria-label="Select quantity" focusBorderColor={useColorModeValue("blue.500", "blue.200")} {...props}>
       <option value="1">1</option>
@@ -17,9 +15,7 @@ const QuantitySelect = (props) => {
 };
 
 export const CartItem = (props) => {
-  const { isGiftWrapping, name, description, quantity, image, currency, price, onChangeQuantity, onClickDelete, id } = props;
-
-  console.log('cart item id', id)
+  const { name, description, quantity, image, currency, price, onChangeQuantity, onClickDelete, id } = props;
 
   return (
     <Flex
@@ -30,7 +26,7 @@ export const CartItem = (props) => {
       justify="space-between"
       align="center"
     >
-      <CartProductMeta name={name} description={description} image={image} id={id} isGiftWrapping={isGiftWrapping} />
+      <CartProductMeta name={name.substring(0, 27) + "..."} description={description} image={image} id={id} />
 
       {/* Desktop */}
       <Flex
@@ -46,15 +42,14 @@ export const CartItem = (props) => {
           value={quantity}
           onChange={(e) => {
             onChangeQuantity(e.currentTarget);
-            // onChangeQuantity?.(+e.currentTarget.value);
           }}
         />
         <PriceTag price={price} currency={currency} />
-        <CloseButton aria-label={`Delete ${name} from cart`} onClick={ () => onClickDelete(id)} />
+        <CloseButton aria-label={`Delete ${name} from cart`} onClick={() => onClickDelete(id)} />
       </Flex>
 
       {/* Mobile */}
-      {/* <Flex
+      <Flex
         mt="4"
         align="center"
         width="full"
@@ -64,17 +59,18 @@ export const CartItem = (props) => {
           md: "none",
         }}
       >
-        <Link fontSize="sm" textDecor="underline">
+        <Link aria-label={`Delete ${name} from cart`} onClick={() => onClickDelete(id)}>
           Delete
         </Link>
         <QuantitySelect
+          data-id={id}
           value={quantity}
           onChange={(e) => {
-            onChangeQuantity?.(+e.currentTarget.value);
+            onChangeQuantity(e.currentTarget);
           }}
         />
-        {/* <PriceTag price={price} currency={currency} /> */}
-      {/* </Flex> */}
+        <PriceTag price={price} currency={currency} />
+      </Flex>
     </Flex>
   );
 };

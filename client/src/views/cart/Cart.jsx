@@ -4,30 +4,7 @@ import { Box, Stack, Heading, Flex, HStack, Text } from "@chakra-ui/react";
 import { CartItem } from "../../components/cart/CartItem";
 import { CartOrderSummary } from "../../components/cart/CartOrderSummary";
 import axios from "axios";
-
-//   const fakeCart = [
-//     {
-//       id: 1,
-//       image: "https://www.fillmurray.com/360/360",
-//       name: "Bill Murray",
-//       quantity: 1,
-//       price: 5,
-//     },
-//     {
-//       id: 2,
-//       image: "https://www.fillmurray.com/370/370",
-//       name: "Bill Murray 2",
-//       quantity: 1,
-//       price: 10,
-//     },
-//     {
-//       id: 3,
-//       image: "https://www.fillmurray.com/380/380",
-//       name: "Bill Murray 3",
-//       quantity: 1,
-//       price: 20,
-//     },
-//   ];
+import { cartService } from "../../services/localStorage";
 
 export default function Cart() {
   let [cartData, setCartData] = useState([]);
@@ -41,25 +18,19 @@ export default function Cart() {
 
     setCartData(copiedCart);
 
-    localStorage.setItem("cart", JSON.stringify(copiedCart));
+    cartService.addToLocalStorage('cart', copiedCart)
+    
   };
-
+  
   const onClickDelete = (value) => {
     const copiedCart = [...cartData];
-
+    
     const updatedCart = copiedCart.filter((x) => x.id !== value);
-
+    
     setCartData(updatedCart);
-
-    localStorage.setItem("cart", JSON.stringify(updatedCart));
+  
+    cartService.addToLocalStorage('cart', updatedCart)
   };
-
-  // const resetCart = () => {
-  //   localStorage.setItem("cart", JSON.stringify(fakeCart));
-  //   const cart = localStorage.getItem("cart");
-  //   const parsedCart = JSON.parse(cart);
-  //   setCartData(parsedCart);
-  // };
 
   const handleSubmit = (e) => {
     e.preventDefault();
@@ -80,9 +51,8 @@ export default function Cart() {
   };
 
   useEffect(() => {
-    const cart = localStorage.getItem("cart");
-    const parsedCart = JSON.parse(cart);
-    setCartData(parsedCart);
+    const cart = cartService.getFromLocalStorage('cart')
+    setCartData(cart);
   }, []);
 
   return (
