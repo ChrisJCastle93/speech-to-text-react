@@ -136,4 +136,38 @@ router.delete("/logout",  (req, res) => {
   });
 });
 
+
+router.post("/profile/edit", isLoggedIn, (req, res, next) => {
+  const { username, password,id } = req.body;
+  // Search the database for a user with the username submitted in the form
+  User.findByIdAndUpdate( id,{username:username}, {new: true}, )
+    .then((user) => {
+      console.log("user======>",user);
+      // If the user isn't found, send the message that user provided wrong credentials
+      // if (user.username) {
+      //   return res.status(400).json({ errorMessage: "Username already taken." });
+      // }Please provide a valid password
+
+      // If user is found based on the username, check if the in putted password matches the one saved in the database
+      bcrypt.compare(password, user.password).then((isSamePassword) => {
+        if (isSamePassword) {
+          return res.status(400).json({ errorMessage: "Please provide a valid password." });
+        }
+        req.session.user = user;
+        // req.session.user = user._id; // ! better and safer but in this case we saving the entire user object
+        return res.json(user);
+      });
+    }).then(newthing=>{
+      console.log("newthing",newthing);
+    })
+
+    .catch((err) => {
+      // in this case we are sending the error handling to the error handling middleware that is defined in the error handling file
+      // you can just as easily run the res.status that is commented out below
+      next(err);
+      // return res.status(500).render("login", { errorMessage: err.message });
+    });
+});
+
+
 module.exports = router;

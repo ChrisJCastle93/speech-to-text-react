@@ -18,6 +18,19 @@ class ApiService {
                 return error.response.data
             });
     }
+
+    update = (username, password ,id) => {
+        return axios
+        .post(`${this.baseUrl}/api/auth/profile/edit`, { username, password, id }, {
+            withCredentials: true
+        })
+        .then(response => {
+            return response.data;
+        })
+        .catch(error => {
+            return error.response.data
+        })
+    }
     
     login = (username, password) => {
         return axios
