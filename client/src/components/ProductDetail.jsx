@@ -1,5 +1,5 @@
 import React from "react";
-import { useParams, Link } from "react-router-dom";
+import { useParams, useNavigate } from "react-router-dom";
 import axios from "axios";
 import { useEffect, useState } from "react";
 import { Button } from "@chakra-ui/react";
@@ -8,6 +8,8 @@ function ProductDetail() {
   const [product, setProduct] = useState([]);
   const params = useParams();
   const productId = params.id;
+
+  const navigate = useNavigate();
 
   const resetCart = () => {
     localStorage.setItem("cart", JSON.stringify([]));
@@ -18,11 +20,11 @@ function ProductDetail() {
     const localCart = localStorage.getItem("cart");
 
     // console.log(localCart);
-    const parsedCart = JSON.parse(localCart)
+    const parsedCart = JSON.parse(localCart);
 
-    let newCart = [...parsedCart]
+    let newCart = [...parsedCart];
 
-    console.log('NEWCART', newCart);
+    console.log("NEWCART", newCart);
 
     const cartProduct = {
       id: product.asin,
@@ -34,10 +36,11 @@ function ProductDetail() {
 
     newCart.push(cartProduct);
 
-    console.log("LOCAL STORAGE BEFORE SET", localStorage.getItem("cart"));
+    // console.log("LOCAL STORAGE BEFORE SET", localStorage.getItem("cart"));
     localStorage.setItem("cart", JSON.stringify(newCart));
-    console.log("LOCAL STORAGE AFTER SET", localStorage.getItem("cart"));
+    // console.log("LOCAL STORAGE AFTER SET", localStorage.getItem("cart"));
     // localStorage.setItem("cart", []);
+    navigate('/cart')
   };
 
   useEffect(() => {
@@ -48,7 +51,7 @@ function ProductDetail() {
         setProduct(response.data.product);
       })
       .catch((err) => console.log(err));
-  }, []);
+  }, [productId]);
 
   return (
     <>
