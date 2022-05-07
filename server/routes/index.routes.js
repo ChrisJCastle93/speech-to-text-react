@@ -24,11 +24,14 @@ const axios = require("axios");
 //   }
 // });
 
+
+
 // const results = require("../utils/results.json");
 // const productResult = require("../utils/productDetailsResult.json");
 
 // // router.get("/search", (req, res) => {
 // //   const amazonSearchQuery = req.query.q.replaceAll("+", " ");
+
 
 // //   res.json(results.search_results);
 
