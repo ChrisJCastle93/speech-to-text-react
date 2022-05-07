@@ -30,9 +30,11 @@ export default function SearchContainer(props) {
 
   const searchAmazon = async () => {
     const queryString = new URLSearchParams({ q: searchTerm }).toString();
+    
     const searchResults = await axios.get(`${process.env.REACT_APP_API_URL}/api/search?${queryString}`);
+    
     props.handleSearchResults(searchResults);
-    console.log('navigating to search results')
+    
     navigate("/search/results");
   };
 

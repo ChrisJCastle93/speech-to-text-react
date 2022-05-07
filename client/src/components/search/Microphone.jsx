@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { speechToTextService } from "../services/speechToText";
+import { speechToTextService } from "../../services/speechToText";
 import { MicrophoneIcon, StopIcon } from "@heroicons/react/solid";
 import { IconButton, Spinner } from "@chakra-ui/react";
 
