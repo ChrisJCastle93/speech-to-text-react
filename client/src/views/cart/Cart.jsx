@@ -1,64 +1,68 @@
 import React, { useState, useEffect } from "react";
-import { Box, Stack, Heading, Flex, HStack, Button } from "@chakra-ui/react";
-import { CartItem } from "../components/CartItem";
-import { CartOrderSummary } from "../components/CartOrderSummary";
+import { Link } from "react-router-dom";
+import { Box, Stack, Heading, Flex, HStack, Text } from "@chakra-ui/react";
+import { CartItem } from "../../components/cart/CartItem";
+import { CartOrderSummary } from "../../components/cart/CartOrderSummary";
 import axios from "axios";
+
+//   const fakeCart = [
+//     {
+//       id: 1,
+//       image: "https://www.fillmurray.com/360/360",
+//       name: "Bill Murray",
+//       quantity: 1,
+//       price: 5,
+//     },
+//     {
+//       id: 2,
+//       image: "https://www.fillmurray.com/370/370",
+//       name: "Bill Murray 2",
+//       quantity: 1,
+//       price: 10,
+//     },
+//     {
+//       id: 3,
+//       image: "https://www.fillmurray.com/380/380",
+//       name: "Bill Murray 3",
+//       quantity: 1,
+//       price: 20,
+//     },
+//   ];
 
 export default function Cart() {
   let [cartData, setCartData] = useState([]);
 
   const onChangeQuantity = (value) => {
-    const searchValue = value.getAttribute("data-id");
-    console.log("SEARCH VALUE", searchValue);
+    const idToFilter = value.getAttribute("data-id");
+
     const copiedCart = [...cartData];
-    console.log("copiedCart", copiedCart);
     // eslint-disable-next-line eqeqeq
-    copiedCart.find((x) => x.id == searchValue).quantity = value.value;
+    copiedCart.find((x) => x.id == idToFilter).quantity = value.value;
+
     setCartData(copiedCart);
+
     localStorage.setItem("cart", JSON.stringify(copiedCart));
   };
 
   const onClickDelete = (value) => {
     const copiedCart = [...cartData];
+
     const updatedCart = copiedCart.filter((x) => x.id !== value);
+
     setCartData(updatedCart);
+
     localStorage.setItem("cart", JSON.stringify(updatedCart));
   };
 
-  const resetCart = () => {
-    const fakeCart = [
-      {
-        id: 1,
-        image: "https://www.fillmurray.com/360/360",
-        name: "Bill Murray",
-        quantity: 1,
-        price: 5,
-      },
-      {
-        id: 2,
-        image: "https://www.fillmurray.com/370/370",
-        name: "Bill Murray 2",
-        quantity: 1,
-        price: 10,
-      },
-      {
-        id: 3,
-        image: "https://www.fillmurray.com/380/380",
-        name: "Bill Murray 3",
-        quantity: 1,
-        price: 20,
-      },
-    ];
-    localStorage.setItem("cart", JSON.stringify(fakeCart));
-    const cart = localStorage.getItem("cart");
-    const parsedCart = JSON.parse(cart);
-    setCartData(parsedCart);
-  };
+  // const resetCart = () => {
+  //   localStorage.setItem("cart", JSON.stringify(fakeCart));
+  //   const cart = localStorage.getItem("cart");
+  //   const parsedCart = JSON.parse(cart);
+  //   setCartData(parsedCart);
+  // };
 
   const handleSubmit = (e) => {
-
     e.preventDefault();
-    console.log("HANDLING SUBMIT");
 
     let totalPrice = 0;
 
@@ -77,16 +81,9 @@ export default function Cart() {
 
   useEffect(() => {
     const cart = localStorage.getItem("cart");
-
-    console.log(cart);
-
-    // const newCart = [...cart]
     const parsedCart = JSON.parse(cart);
-    // setCartData(newCart);
     setCartData(parsedCart);
   }, []);
-
-  console.log("CART, cartData", cartData);
 
   return (
     <div>
@@ -130,7 +127,6 @@ export default function Cart() {
             <Heading fontSize="2xl" fontWeight="extrabold">
               Shopping Cart ({cartData.length} items)
             </Heading>
-            <Button onClick={resetCart}>Reset Cart</Button>
 
             <Stack spacing="6">
               {cartData.map((item) => (
@@ -142,8 +138,10 @@ export default function Cart() {
           <Flex direction="column" align="center" flex="1">
             <CartOrderSummary cartData={cartData} handleSubmit={handleSubmit} />
             <HStack mt="6" fontWeight="semibold">
-              {/* <p>or</p> */}
-              {/* <Link color={mode("blue.500", "blue.200")}>Continue shopping</Link> */}
+              <Text>or</Text>
+              <Link to="/">
+                <Text color="blue.500">Continue Shopping</Text>
+              </Link>
             </HStack>
           </Flex>
         </Stack>

@@ -1,8 +1,8 @@
-import { HStack, Text, useColorModeValue as mode } from "@chakra-ui/react";
+import { HStack, Text } from "@chakra-ui/react";
 import * as React from "react";
 
 export function formatPrice(value, opts = {}) {
-  const { locale = "en-US", currency = "USD" } = opts;
+  const { locale = "de-DE", currency = "EUR" } = opts;
   const formatter = new Intl.NumberFormat(locale, {
     currency,
     style: "currency",
@@ -25,12 +25,9 @@ export const PriceTag = (props) => {
 };
 
 const Price = (props) => {
-  const { isOnSale, children, textProps } = props;
-  const defaultColor = mode("gray.700", "gray.400");
-  const onSaleColor = mode("gray.400", "gray.700");
-  const color = isOnSale ? onSaleColor : defaultColor;
+  const { children, textProps } = props;
   return (
-    <Text as="span" fontWeight="medium" color={color} textDecoration={isOnSale ? "line-through" : "none"} {...textProps}>
+    <Text as="span" fontWeight="medium" color="gray.700" {...textProps} >
       {children}
     </Text>
   );
