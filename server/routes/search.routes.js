@@ -6,7 +6,7 @@ const results = require("../utils/results.json");
 const productResult = require("../utils/productDetailsResult.json");
 
 
-router.get("/", (req, res) => {
+router.get("", (req, res) => {
   const amazonSearchQuery = req.query.q.replaceAll("+", " ");
 
   res.json(results.search_results);
