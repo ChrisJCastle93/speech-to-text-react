@@ -3,6 +3,7 @@ import { useParams, useNavigate } from "react-router-dom";
 import axios from "axios";
 import { useEffect, useState } from "react";
 import { Button } from "@chakra-ui/react";
+import { cartService } from "../services/localStorage";
 
 function ProductDetail() {
   const [product, setProduct] = useState([]);
@@ -12,19 +13,14 @@ function ProductDetail() {
   const navigate = useNavigate();
 
   const resetCart = () => {
-    localStorage.setItem("cart", JSON.stringify([]));
-    console.log(localStorage.getItem("cart"));
+    cartService.addToLocalStorage("cart", []);
   };
 
   const addToCart = (product) => {
-    const localCart = localStorage.getItem("cart");
 
-    // console.log(localCart);
-    const parsedCart = JSON.parse(localCart);
+    const cart = cartService.getFromLocalStorage('cart')
 
-    let newCart = [...parsedCart];
-
-    console.log("NEWCART", newCart);
+    let newCart = [...cart];
 
     const cartProduct = {
       id: product.asin,
@@ -36,11 +32,9 @@ function ProductDetail() {
 
     newCart.push(cartProduct);
 
-    // console.log("LOCAL STORAGE BEFORE SET", localStorage.getItem("cart"));
-    localStorage.setItem("cart", JSON.stringify(newCart));
-    // console.log("LOCAL STORAGE AFTER SET", localStorage.getItem("cart"));
-    // localStorage.setItem("cart", []);
-    navigate('/cart')
+    cartService.addToLocalStorage("cart", newCart);
+
+    navigate("/cart");
   };
 
   useEffect(() => {

@@ -1,9 +1,9 @@
-import { AspectRatio, Box, Button, HStack, Image, Skeleton, Stack, Text, useBreakpointValue, useColorModeValue } from "@chakra-ui/react";
+import { AspectRatio, Box, HStack, Image, Skeleton, Stack, Text, useBreakpointValue, useColorModeValue } from "@chakra-ui/react";
 import { Link } from "react-router-dom";
 
 import * as React from "react";
 import { Rating } from "../components/Rating";
-import { PriceTag } from "../components/PriceTag";
+import { PriceTag } from "../components/cart/PriceTag";
 
 export const ProductCard = (props) => {
   const { product, rootProps } = props;
