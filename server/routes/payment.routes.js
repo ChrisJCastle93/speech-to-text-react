@@ -12,14 +12,14 @@ router.post("/create-checkout-session", async (req, res) => {
           product_data: {
             name: "Test Product",
           },
-          unit_amount: req.body.cartTotal * 100,
+          unit_amount: (req.body.cartTotal * 100).toFixed(0),
         },
         quantity: 1,
       },
     ],
     mode: "payment",
-    success_url: `${process.env.DOMAIN}/checkout?success=true`,
-    cancel_url: `${process.env.DOMAIN}/checkout?canceled=true`,
+    success_url: `${process.env.DOMAIN}/checkout/${req.body.id}?success=true`,
+    cancel_url: `${process.env.DOMAIN}/checkout/${req.body.id}?canceled=true`,
   });
 
   res.json({"url":session.url});

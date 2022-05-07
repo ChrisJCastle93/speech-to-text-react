@@ -18,21 +18,20 @@ export default function Cart() {
 
     setCartData(copiedCart);
 
-    cartService.addToLocalStorage('cart', copiedCart)
-    
-  };
-  
-  const onClickDelete = (value) => {
-    const copiedCart = [...cartData];
-    
-    const updatedCart = copiedCart.filter((x) => x.id !== value);
-    
-    setCartData(updatedCart);
-  
-    cartService.addToLocalStorage('cart', updatedCart)
+    cartService.addToLocalStorage("cart", copiedCart);
   };
 
-  const handleSubmit = (e) => {
+  const onClickDelete = (value) => {
+    const copiedCart = [...cartData];
+
+    const updatedCart = copiedCart.filter((x) => x.id !== value);
+
+    setCartData(updatedCart);
+
+    cartService.addToLocalStorage("cart", updatedCart);
+  };
+
+  const handleSubmit = async (e) => {
     e.preventDefault();
 
     let totalPrice = 0;
@@ -42,16 +41,19 @@ export default function Cart() {
       totalPrice += itemTotal;
     });
 
-    axios
-      .post("http://localhost:5005/api/payments/create-checkout-session", { cartTotal: totalPrice.toFixed(2) })
-      .then((res) => {
-        window.location.href = res.data.url;
-      })
-      .catch((err) => console.log(err));
+    try {
+      const orderId = await axios.post("http://localhost:5005/api/order/new", cartData);
+      
+      const res = await axios.post("http://localhost:5005/api/payments/create-checkout-session", { cartTotal: totalPrice.toFixed(2), id: orderId.data._id });
+
+      window.location.href = res.data.url;
+    } catch (err) {
+      console.log(err);
+    }
   };
 
   useEffect(() => {
-    const cart = cartService.getFromLocalStorage('cart')
+    const cart = cartService.getFromLocalStorage("cart");
     setCartData(cart);
   }, []);
 
