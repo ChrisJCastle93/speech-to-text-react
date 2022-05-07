@@ -4,8 +4,8 @@ const fs = require("fs");
 
 
 const speechToText = new SpeechToTextV1({
-  authenticator: new IamAuthenticator({ apikey: "Tsp6V8lAz5Pkw95z7NubBWRiv9Tfg4ciTBdHAPlWIKrx" }),
-  serviceUrl: "https://api.us-south.speech-to-text.watson.cloud.ibm.com",
+  authenticator: new IamAuthenticator({ apikey: process.env.IBM_API_KEY }),
+  serviceUrl: process.env.IBM_URL,
 });
 
 const transcribeSpeech = () => {
