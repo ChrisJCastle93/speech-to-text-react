@@ -51,7 +51,7 @@ export const CartOrderSummary = (props) => {
           </Text>
         </Flex>
       </Stack>
-      <Button colorScheme="blue" size="lg" fontSize="md" rightIcon={<FaArrowRight />}>
+      <Button onClick={(e) => props.handleSubmit(e)} colorScheme="blue" size="lg" fontSize="md" rightIcon={<FaArrowRight />}>
         Checkout
       </Button>
     </Stack>

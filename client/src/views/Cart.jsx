@@ -2,16 +2,18 @@ import React, { useState, useEffect } from "react";
 import { Box, Stack, Heading, Flex, HStack, Button } from "@chakra-ui/react";
 import { CartItem } from "../components/CartItem";
 import { CartOrderSummary } from "../components/CartOrderSummary";
+import axios from "axios";
 
 export default function Cart() {
   let [cartData, setCartData] = useState([]);
 
   const onChangeQuantity = (value) => {
     const searchValue = value.getAttribute("data-id");
-    console.log('SEARCH VALUE', searchValue)
+    console.log("SEARCH VALUE", searchValue);
     const copiedCart = [...cartData];
-    console.log('copiedCart', copiedCart)
-    copiedCart.find((x) => x.id == searchValue).quantity = value.value
+    console.log("copiedCart", copiedCart);
+    // eslint-disable-next-line eqeqeq
+    copiedCart.find((x) => x.id == searchValue).quantity = value.value;
     setCartData(copiedCart);
     localStorage.setItem("cart", JSON.stringify(copiedCart));
   };
@@ -53,15 +55,35 @@ export default function Cart() {
     setCartData(parsedCart);
   };
 
+  const handleSubmit = (e) => {
+
+    e.preventDefault();
+    console.log("HANDLING SUBMIT");
+
+    let totalPrice = 0;
+
+    cartData.forEach((item) => {
+      const itemTotal = item.price * item.quantity;
+      totalPrice += itemTotal;
+    });
+
+    axios
+      .post("http://localhost:5005/api/payments/create-checkout-session", { cartTotal: totalPrice.toFixed(2) })
+      .then((res) => {
+        window.location.href = res.data.url;
+      })
+      .catch((err) => console.log(err));
+  };
+
   useEffect(() => {
     const cart = localStorage.getItem("cart");
 
-    console.log(cart)
+    console.log(cart);
 
     // const newCart = [...cart]
     const parsedCart = JSON.parse(cart);
     // setCartData(newCart);
-    setCartData(parsedCart)
+    setCartData(parsedCart);
   }, []);
 
   console.log("CART, cartData", cartData);
@@ -118,7 +140,7 @@ export default function Cart() {
           </Stack>
 
           <Flex direction="column" align="center" flex="1">
-            <CartOrderSummary cartData={cartData} />
+            <CartOrderSummary cartData={cartData} handleSubmit={handleSubmit} />
             <HStack mt="6" fontWeight="semibold">
               {/* <p>or</p> */}
               {/* <Link color={mode("blue.500", "blue.200")}>Continue shopping</Link> */}
