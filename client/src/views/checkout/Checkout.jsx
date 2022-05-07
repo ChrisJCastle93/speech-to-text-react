@@ -1,20 +1,6 @@
 import React, { useState, useEffect } from "react";
-import axios from 'axios'
-
-const ProductDisplay = (props) => (
-  <section>
-    <div className="product">
-      <img src="https://i.imgur.com/EHyR2nP.png" alt="The cover of Stubborn Attachments" />
-      <div className="description">
-        <h3>Stubborn Attachments</h3>
-        <h5>$20.00</h5>
-      </div>
-    </div>
-    <form onSubmit={(e) => props.handleSubmit(e)}>
-      <button type="submit">Checkout</button>
-    </form>
-  </section>
-);
+import axios from "axios";
+import { useParams } from "react-router-dom";
 
 const Message = ({ message }) => (
   <section>
@@ -25,22 +11,14 @@ const Message = ({ message }) => (
 export default function Checkout() {
   const [message, setMessage] = useState("");
 
-  const handleSubmit = (e) => {
-    e.preventDefault();
-    console.log("HANDLING SUBMIT");
-    axios.post("http://localhost:5005/api/payments/create-checkout-session")
-    .then(res => {
-      window.location.href = res.data.url
-    })
-    .catch(err => console.log(err));
-  };
+  let { id } = useParams();
 
   useEffect(() => {
-    // Check to see if this is a redirect back from Checkout
     const query = new URLSearchParams(window.location.search);
 
     if (query.get("success")) {
-      setMessage("Order placed! You will receive an email confirmation.");
+      axios.post(`http://localhost:5005/api/order/${id}/paid`);
+      setMessage(`Order ${id} placed! You will receive an email confirmation.`);
     }
 
     if (query.get("canceled")) {
@@ -48,5 +26,5 @@ export default function Checkout() {
     }
   }, []);
 
-  return message ? <Message message={message} /> : <ProductDisplay handleSubmit={handleSubmit} />;
+  return <Message message={message} />;
 }

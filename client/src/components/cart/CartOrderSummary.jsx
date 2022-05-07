@@ -6,7 +6,6 @@ import { formatPrice } from "./PriceTag";
 
 export const CartOrderSummary = (props) => {
   let { cartData } = props;
-  console.log(cartData)
 
   let totalPrice = 0
 
