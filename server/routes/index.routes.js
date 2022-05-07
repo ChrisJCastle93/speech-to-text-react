@@ -1,12 +1,10 @@
 const router = require("express").Router();
 const authRoutes = require("./auth.routes");
+const paymentRoutes = require("./payment.routes");
+
 const fs = require("fs");
 const transcribeSpeech = require("../utils/speechToText");
 const axios = require("axios");
-
-router.get("/", async (req, res, next) => {
-  res.json("All good in here");
-});
 
 router.post("/convertspeech", async (req, res, next) => {
   try {
@@ -65,5 +63,6 @@ router.get("/search/results/:id", (req, res) => {
 });
 
 router.use("/auth", authRoutes);
+router.use("/payments", paymentRoutes);
 
 module.exports = router;
