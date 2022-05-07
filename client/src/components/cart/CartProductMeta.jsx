@@ -10,7 +10,9 @@ export const CartProductMeta = (props) => {
       <Box h={100}>
         <Center h={100}>
           <Stack spacing="0.5">
-            <Text fontWeight="medium">{name}</Text>
+            <Text fontWeight="medium" px={4}>
+              {name}
+            </Text>
             <Text color="gray.600" fontSize="sm">
               {description}
             </Text>

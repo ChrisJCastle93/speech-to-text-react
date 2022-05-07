@@ -26,7 +26,7 @@ export const CartItem = (props) => {
       justify="space-between"
       align="center"
     >
-      <CartProductMeta name={name.substring(0, 27) + "..."} description={description} image={image} id={id} />
+      <CartProductMeta  name={name.substring(0, 40) + "..."} description={description} image={image} id={id} />
 
       {/* Desktop */}
       <Flex
