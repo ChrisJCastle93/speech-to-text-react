@@ -2,6 +2,8 @@
 import { Link } from 'react-router-dom';
 import React from 'react';
 import header from '../assets/header.jpeg'
+import PromoContainer from './PromoContainer';
+import home from '../css/Home.css'
 
 function Home(props) {
   return (
@@ -10,10 +12,15 @@ function Home(props) {
       <h1>Lamp Daddy</h1>
       <h2>{props.loggedInUser ? `Welcome ${props.loggedInUser.username}` : ""}</h2>
 
- <section id="header">
-        <div>
-          <image className='headerImage' src={header} alt="ambience-picture" />
-        </div>
+
+
+
+
+
+
+
+      <section className="header">
+      <h1 className="text">Lamp Daddy</h1>
       </section>
 
       <section id="promo">
@@ -39,6 +46,9 @@ function Home(props) {
               <img className="imagePromo" alt="lamps" />
             </div>
           </Link>
+        <Link to={`/search/:?`}>
+          <PromoContainer />
+        </Link>
 
       </section>
 
@@ -47,6 +57,6 @@ function Home(props) {
       </footer> 
       </div>
   );
-} 
+}
 
 export default Home;
