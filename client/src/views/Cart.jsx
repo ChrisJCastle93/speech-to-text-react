@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import { Box, Stack, Heading, Flex, HStack, Link, Button } from "@chakra-ui/react";
+import { Box, Stack, Heading, Flex, HStack, Button } from "@chakra-ui/react";
 import { CartItem } from "../components/CartItem";
 import { CartOrderSummary } from "../components/CartOrderSummary";
 
