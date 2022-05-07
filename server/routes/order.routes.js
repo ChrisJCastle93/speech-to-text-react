@@ -3,17 +3,20 @@ const User = require('../models/User.model');
 const Order = require('../models/Order.model');
 
 router.post("/new", async (req, res) => {
+
+  console.log(req.body.cartData)
+  console.log(req.body.userId)
   
   const orderDetails = {
-    products: req.body
+    products: req.body.cartData
   }
   
   try {
     console.log('trying order')
     const createdOrder = await Order.create(orderDetails);
   
-    // const foundUser = await User.findByIdAndUpdate('USER DETAILS GO HERE', { $push: { "orders": orderDetails.id }}, {new: true})
-    // console.log(`ORDER CREATED: ${createdOrder} AND MATCHED TO USER: ${foundUser}`)
+    const foundUser = await User.findByIdAndUpdate(req.body.userId, { $push: { "orders": createdOrder._id }}, {new: true})
+    console.log(`ORDER CREATED: ${createdOrder} AND MATCHED TO USER: ${foundUser}`)
     res.json(createdOrder)
     
   } catch (err) {

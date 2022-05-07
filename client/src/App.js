@@ -65,7 +65,7 @@ function App() {
           <Routes>
             <Route path="/" element={<Home loggedInUser={loggedInUser} />} />
             <Route path="/test" element={<Test />} />
-            <Route path="/cart" element={<Cart />} />
+            <Route path="/cart" element={<Cart loggedInUser={loggedInUser} />} />
             <Route path="/profile/edit" element={<UpdateUserForm loggedInUser={loggedInUser} setLoggedInUser={setLoggedInUser}/>} />
             <Route path="/signup" element={<Signup setLoggedInUser={setLoggedInUser}/>} />
             <Route path="/login" element={<Login setLoggedInUser={setLoggedInUser}/>} />

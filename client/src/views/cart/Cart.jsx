@@ -6,7 +6,7 @@ import { CartOrderSummary } from "../../components/cart/CartOrderSummary";
 import axios from "axios";
 import { cartService } from "../../services/localStorage";
 
-export default function Cart() {
+export default function Cart(props) {
   let [cartData, setCartData] = useState([]);
 
   const onChangeQuantity = (value) => {
@@ -31,7 +31,7 @@ export default function Cart() {
     cartService.addToLocalStorage("cart", updatedCart);
   };
 
-  const handleSubmit = async (e) => {
+  const handleSubmit = async (e, userId) => {
     e.preventDefault();
 
     let totalPrice = 0;
@@ -42,7 +42,7 @@ export default function Cart() {
     });
 
     try {
-      const orderId = await axios.post("http://localhost:5005/api/order/new", cartData);
+      const orderId = await axios.post("http://localhost:5005/api/order/new", { cartData, userId });
       
       const res = await axios.post("http://localhost:5005/api/payments/create-checkout-session", { cartTotal: totalPrice.toFixed(2), id: orderId.data._id });
 
@@ -108,7 +108,7 @@ export default function Cart() {
           </Stack>
 
           <Flex direction="column" align="center" flex="1">
-            <CartOrderSummary cartData={cartData} handleSubmit={handleSubmit} />
+            <CartOrderSummary cartData={cartData} {...props} handleSubmit={handleSubmit} />
             <HStack mt="6" fontWeight="semibold">
               <Text>or</Text>
               <Link to="/">

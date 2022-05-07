@@ -11,7 +11,8 @@ const userSchema = new Schema(
       type: String,
       enum: ["ADMIN", "CUSTOMER"],
       default: "ADMIN" // <-- Change to CUSTOMER after we finished developing.
-    }
+    },
+    orders: Array
   },
   {
     timestamps: true,
