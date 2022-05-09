@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from "react";
 import axios from "axios";
 import { useParams } from "react-router-dom";
+import { ChatContainer } from "../../components/chat/ChatContainer";
 
 const Message = ({ message }) => (
   <section>
@@ -8,7 +9,10 @@ const Message = ({ message }) => (
   </section>
 );
 
-export default function Checkout() {
+export default function Checkout(props) {
+
+  const { loggedInUser } = props
+
   const [message, setMessage] = useState("");
 
   let { id } = useParams();
@@ -26,5 +30,10 @@ export default function Checkout() {
     }
   }, []);
 
-  return <Message message={message} />;
+  return (
+    <>
+      <Message message={message} />
+      <ChatContainer loggedInUser={loggedInUser} />
+    </>
+  );
 }
