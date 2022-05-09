@@ -43,7 +43,7 @@ export default function Cart(props) {
 
     try {
       const orderId = await axios.post("http://localhost:5005/api/order/new", { cartData, userId });
-      
+
       const res = await axios.post("http://localhost:5005/api/payments/create-checkout-session", { cartTotal: totalPrice.toFixed(2), id: orderId.data._id });
 
       window.location.href = res.data.url;
