@@ -1,24 +1,10 @@
 import axios from "axios";
 
-// const getPreviousMessages = () => axios.get(`/chat`);
-const getPreviousMessages = () => axios.get(`http://localhost:5005/api/chat`);
+const getPreviousMessages = () => axios.get(`${process.env.REACT_APP_API_URL}/api/chat`);
 
-// const sendMessage = (user, newMessage) => axios.post("/chat/new-message", { sendBy: user, newMessage });
-const sendMessage = (user, newMessage) => axios.post("http://localhost:5005/api/chat/new-message", { sendBy: user, newMessage });
-
-const checkLoggedIn = () => axios.get("/auth/loggedin");
-
-const signup = (username, password) => axios.post(`/auth/signup`, { username, password });
-
-const login = (username, password) => axios.post(`/auth/login`, { username, password });
+const sendMessage = (user, newMessage) => axios.post(`${process.env.REACT_APP_API_URL}/api/chat/new-message`, { sendBy: user, newMessage });
 
 export const chat = {
   getPreviousMessages,
   sendMessage,
-};
-
-export const auth = {
-  checkLoggedIn,
-  signup,
-  login,
 };

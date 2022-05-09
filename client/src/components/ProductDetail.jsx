@@ -39,7 +39,7 @@ function ProductDetail() {
 
   useEffect(() => {
     axios
-      .get(`http://localhost:5005/api/search/results/${productId}`)
+      .get(`${process.env.REACT_APP_API_URL}/api/search/results/${productId}`)
       .then((response) => {
         //   console.log(response.data.product.variants[0].main_image)
         setProduct(response.data.product);
