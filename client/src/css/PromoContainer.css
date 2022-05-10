@@ -1,0 +1,10 @@
+#promo {
+    display: flexbox;
+    width: 200px;
+    height: 200px;
+    background-color: pink;
+    padding: 20px;
+    box-sizing: border-box;
+    border: 10px solid red;
+    margin: 10px;
+  }
