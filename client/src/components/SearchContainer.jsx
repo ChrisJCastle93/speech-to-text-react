@@ -1,8 +1,8 @@
 import { Center, HStack } from "@chakra-ui/react";
 import axios from "axios";
 import React, { useEffect, useState } from "react";
-import SearchBar from "../components/SearchBar";
-import Microphone from "../components/Microphone";
+import SearchBar from "../components/search/SearchBar";
+import Microphone from "../components/search/Microphone";
 import { useNavigate } from "react-router-dom";
 
 export default function SearchContainer(props) {
