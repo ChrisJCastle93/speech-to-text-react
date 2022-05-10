@@ -1,6 +1,6 @@
 
 import React from 'react'
-import { Routes, Route} from "react-router-dom";
+import { Routes, Route, Link} from "react-router-dom";
 import Home from "./components/Home";
 import Test from "./components/search/Microphone";
 import SearchContainer from "./components/search/SearchContainer";
@@ -15,6 +15,8 @@ import Cart from "./views/cart/Cart";
 import Profile from "./views/Profile";
 import ProductDetail from './components/ProductDetail';
 import Checkout from './views/checkout/Checkout';
+import AuthButtonDisplay from "./components/AuthButtonDisplay";
+import { UpdateUserForm } from "./views/auth/UpdateUserForm";
 
 function App() {
   let [searchResultsArray, setSearchResultsArray] = useState([]);
@@ -22,14 +24,21 @@ function App() {
   const navigate = useNavigate();
 
   const [loggedInUser, setLoggedInUser] = useState(null);
+  const [loading, setLoading] = useState(true);
+  console.log("loggedInUser", loggedInUser);
 
   React.useEffect(() => {
     const fetchUser = async () => {
-      const res = await apiService.isLoggedIn()
-      setLoggedInUser(res.data)
-    }
-    fetchUser()
-  }, [])
+      console.log("fetching...");
+      const res = await apiService.isLoggedIn();
+
+      console.log(res);
+      setLoggedInUser(res.data);
+      setLoading(false);
+    };
+    console.log("use effect triggering");
+    fetchUser();
+  }, []);
 
   const logoutHandler = async () => {
     await apiService.logout();
@@ -41,28 +50,36 @@ function App() {
     setSearchResultsArray(searchResults.data);
   };
 
-  // console.log(loggedInUser)
+  console.log(loggedInUser);
 
   return (
 
-      <ChakraProvider>
+    <ChakraProvider>
+    {loading ? (
+      <div>Loading.....</div>
+    ) : (
         <div className="App">
+        <Link to="/profile/edit">edit profile</Link>
+          <AuthButtonDisplay
+            loggedInUser={loggedInUser}
+            logoutHandler={logoutHandler}
+          />
           <Routes>
-            <Route path="/" element={<Home />} />
+            <Route path="/" element={<Home loggedInUser={loggedInUser} />} />
             <Route path="/test" element={<Test />} />
-            <Route path="/signup" element={<Signup />} />
-            <Route path="/cart" element={<Cart />} />
-            <Route path="/login" element={<Login />} />
+            <Route path="/cart" element={<Cart loggedInUser={loggedInUser} />} />
+            <Route path="/profile/edit" element={<UpdateUserForm loggedInUser={loggedInUser} setLoggedInUser={setLoggedInUser}/>} />
             <Route path="/signup" element={<Signup setLoggedInUser={setLoggedInUser}/>} />
             <Route path="/login" element={<Login setLoggedInUser={setLoggedInUser}/>} />
             <Route path="/profile" element={<Profile loggedInUser={loggedInUser}/>} />
             <Route path="/search" element={<SearchContainer handleSearchResults={handleSearchResults} />} />
             <Route path="/search/results" element={<SearchResults searchResultsArray={searchResultsArray} />} />
             <Route path="/search/results/:id" element={<ProductDetail />} />
-            <Route path="/checkout" element={<Checkout />} />
+            <Route path="/checkout/:id" element={<Checkout loggedInUser={loggedInUser} />} />
           </Routes>
         </div>
-      </ChakraProvider>
+        )}
+    </ChakraProvider>
 
   );
 }
