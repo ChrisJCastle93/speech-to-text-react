@@ -16,7 +16,7 @@ class ApiService {
             })
             .catch(error => {
                 return error.response.data
-            });
+             });
     }
 
     update = (username, password ,id) => {
