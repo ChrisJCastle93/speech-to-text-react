@@ -11,11 +11,12 @@ function Home(props) {
       <h2>{props.loggedInUser ? `Welcome ${props.loggedInUser.username}` : ""}</h2>
 
 
-      <section className="header">
+      <header className="header">
       <h1 className="text">Lamp Daddy</h1>
-      </section>
+      </header>
 
-      <section id="promo">
+
+      <section>
 
         <Link to={`/search/:?`}>
           <PromoContainer />
