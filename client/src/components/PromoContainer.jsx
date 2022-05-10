@@ -20,15 +20,24 @@ export default function PromoContainer() {
   }, []);
 
   return (
-    <div>
-      {listOfPromo.map((x) => {
+    <div >
+      {listOfPromo.slice(0,3).map((x) => {
         return (
-          <Link key={x.link} to={`/search/results/${x.asin}`}>
-            <img  id="promo" src={x.image} />
+          <Link  key={x.link} to={`/search/results/${x.asin}`}>
+            <img  src={x.image} />
+          </Link>
+        );
+      })}{" "};
+
+{listOfPromo.slice(3,6).map((x) => {
+        return (
+          <Link  key={x.link} to={`/search/results/${x.asin}`}>
+            <img  src={x.image} />
           </Link>
         );
       })}{" "}
 
     </div>
+
   );
 }
