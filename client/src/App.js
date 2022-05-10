@@ -2,8 +2,8 @@
 import React from 'react'
 import { Routes, Route} from "react-router-dom";
 import Home from "./components/Home";
-import Test from "./components/Microphone";
-import SearchContainer from "./views/SearchContainer";
+import Test from "./components/search/Microphone";
+import SearchContainer from "./components/search/SearchContainer";
 import SearchResults from "./views/SearchResults";
 import { ChakraProvider } from "@chakra-ui/react";
 import { useState } from "react";
@@ -11,10 +11,10 @@ import { Signup } from "./views/auth/Signup";
 import { Login } from "./views/auth/Login";
 import { useNavigate } from 'react-router-dom';
 import apiService from "./views/services/auth";
-import Cart from "./views/Cart";
+import Cart from "./views/cart/Cart";
 import Profile from "./views/Profile";
 import ProductDetail from './components/ProductDetail';
-import Checkout from './views/checkout'
+import Checkout from './views/checkout/Checkout';
 
 function App() {
   let [searchResultsArray, setSearchResultsArray] = useState([]);
