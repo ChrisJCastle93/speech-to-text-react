@@ -22,7 +22,7 @@ export default function PromoContainer() {
     <div>
       {listOfPromo.map((x) => {
         return (
-          <Link to={`/search/results/${x.asin}`}>
+          <Link key={x.link} to={`/search/results/${x.asin}`}>
             <img src={x.image} />
           </Link>
         );
