@@ -20,8 +20,8 @@ require("./config")(app);
 const allRoutes = require("./routes/index.routes");
 app.use("/api", allRoutes);
 
-const publicPath = path.join(__dirname, "..", "public");
-app.use(express.static(publicPath));
+// const publicPath = path.join(__dirname, "..", "public");
+// app.use(express.static(publicPath));
 
 // ❗ To handle errors. Routes that don't exist or errors that you handle in specific routes
 require("./error-handling")(app);
