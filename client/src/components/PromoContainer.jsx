@@ -2,7 +2,6 @@ import React from "react";
 import axios from "axios";
 import { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
-import promocontainer from '../css/PromoContainer.css'
 
 export default function PromoContainer() {
   const [listOfPromo, setListOfPromo] = useState([]);
@@ -20,24 +19,15 @@ export default function PromoContainer() {
   }, []);
 
   return (
-    <div >
-      {listOfPromo.slice(0,3).map((x) => {
+    <div>
+      {listOfPromo.map((x) => {
         return (
-          <Link  key={x.link} to={`/search/results/${x.asin}`}>
-            <img  src={x.image} />
-          </Link>
-        );
-      })}{" "};
-
-{listOfPromo.slice(3,6).map((x) => {
-        return (
-          <Link  key={x.link} to={`/search/results/${x.asin}`}>
-            <img  src={x.image} />
+          <Link to={`/search/results/${x.asin}`}>
+            <img src={x.image} />
           </Link>
         );
       })}{" "}
-
+      hello
     </div>
-
   );
 }
