@@ -24,3 +24,14 @@ section {
     height: 360px;
     z-index: 10;  
 }
+
+
+.text:hover {
+    font-variation-settings: "wght" 100, "ital" 0;
+    text-shadow: none;
+  }
+
+
+
+footer {
+	background: #707070;
