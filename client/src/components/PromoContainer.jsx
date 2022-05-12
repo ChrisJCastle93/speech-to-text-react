@@ -2,7 +2,6 @@ import React from "react";
 import axios from "axios";
 import { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
-import promocontainer from '../css/PromoContainer.css'
 
 export default function PromoContainer() {
   const [listOfPromo, setListOfPromo] = useState([]);
@@ -38,8 +37,7 @@ export default function PromoContainer() {
           </Link>
         );
       })}{" "}
-
+      hello
     </div>
-
   );
 }
