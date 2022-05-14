@@ -4,7 +4,7 @@ import { cartService } from "../services/localStorage";
 
 export default function Profile (props) {
   const wishlist = cartService.getFromLocalStorage("wishlist");
-  const [wishlistData, setWishlist] = useState();
+  const [wishlistData, setWishlist] = useState(wishlist);
 
   const onClickDelete = (value) => {
     const copiedWishlist = [...wishlistData]
@@ -17,9 +17,11 @@ export default function Profile (props) {
 
   }
   
-  useEffect(() => {
-    setWishlist(wishlist);
-  }, []);
+  // useEffect(() => {
+  //   setWishlist(wishlist);
+  // }, []);
+
+  console.log('wishlistData:', wishlistData)
 
 
   return (
@@ -27,7 +29,7 @@ export default function Profile (props) {
       <h2>Hi {props.loggedInUser?.username} this is my profile</h2>
       <div className="wishlist">
           {wishlistData?.map((item) => (
-                  <CartItem key={item.id} {...item} onClickDelete={onClickDelete} noQuantity/>
+                  <CartItem key={item.id} {...item} onClickDelete={onClickDelete} isWishList noQuantity/>
                 ))}
       </div>
     </div>

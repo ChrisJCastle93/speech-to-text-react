@@ -3,7 +3,7 @@ import { useParams, useNavigate } from "react-router-dom";
 import axios from "axios";
 import { useEffect, useState } from "react";
 import { Button } from "@chakra-ui/react";
-import { cartService } from "../services/localStorage";
+import { cartService } from "../services/localStorage.js";
 
 function ProductDetail() {
   const [product, setProduct] = useState([]);
@@ -70,6 +70,7 @@ function ProductDetail() {
     axios
       .get(`${process.env.REACT_APP_API_URL}/api/search/results/${productId}`)
       .then((response) => {
+        console.log(response.data)
         //   console.log(response.data.product.variants[0].main_image)
         setProduct(response.data.product);
       })
