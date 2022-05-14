@@ -4,7 +4,7 @@ import AuthButtonDisplay from './AuthButtonDisplay';
 // import SearchContainer from './search/SearchContainer';
 import Microphone from './search/Microphone';
 import SearchBar from './search/SearchBar';
-import "./navbar.css";
+import "./css/navbar.css";
 
 
 export default function Navbar({loggedInUser, logoutHandler, searchTerm, searchHandler, handleSubmit, updateSpeechDone}) {

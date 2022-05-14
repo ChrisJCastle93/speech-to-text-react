@@ -4,6 +4,7 @@ import axios from "axios";
 import { useEffect, useState } from "react";
 import { Button } from "@chakra-ui/react";
 import { cartService } from "../services/localStorage";
+import { wishlistService } from "../services/localStorageWishlist"
 
 function ProductDetail() {
   const [product, setProduct] = useState([]);
@@ -37,6 +38,27 @@ function ProductDetail() {
     navigate("/cart");
   };
 
+    const addToWishlist = (product) => {
+
+    const wishlist = wishlistService.getFromLocalStorage('wishlist')
+
+    let newWishlist = [...wishlist];
+
+    const wishlistProduct = {
+      id: product.asin,
+      name: product.title,
+      price: product.variants[0].price.value,
+      image: product.variants[0].main_image,
+      quantity: 1,
+    };
+
+    newWishlist.push(wishlistProduct);
+
+    wishlistService.addToLocalStorage("wishlist", newWishlist);
+
+    // navigate("/cart");
+  };
+
   useEffect(() => {
     axios
       .get(`${process.env.REACT_APP_API_URL}/api/search/results/${productId}`)
@@ -53,6 +75,7 @@ function ProductDetail() {
       <h2>{product.title}</h2>/<p>{product.feature_bullets}</p>
       <Button onClick={() => addToCart(product)}>Add to Cart </Button>
       <Button onClick={() => resetCart()}>Reset Cart </Button>
+      <Button onClick={() => addToWishlist(product)}>Add to Wishlist </Button>
     </>
   );
 }
