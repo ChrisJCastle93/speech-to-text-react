@@ -15,7 +15,7 @@ function Home(props) {
       <h1 className="text">Lamp Daddy</h1>
       </section>
 
-      <section id="promo">
+      <section>
 
         <Link to={`/search/:?`}>
           <PromoContainer />
