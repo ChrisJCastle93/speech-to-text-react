@@ -4,7 +4,6 @@ import axios from "axios";
 import { useEffect, useState } from "react";
 import { Button } from "@chakra-ui/react";
 import { cartService } from "../services/localStorage";
-import { wishlistService } from "../services/localStorageWishlist"
 
 function ProductDetail() {
   const [product, setProduct] = useState([]);
@@ -18,8 +17,7 @@ function ProductDetail() {
   };
 
   const addToCart = (product) => {
-
-    const cart = cartService.getFromLocalStorage('cart')
+    const cart = cartService.getFromLocalStorage("cart");
 
     let newCart = [...cart];
 
@@ -38,10 +36,13 @@ function ProductDetail() {
     navigate("/cart");
   };
 
-    const addToWishlist = (product) => {
+  const addToWishlist = (product) => {
+    const wishlist = cartService.getFromLocalStorage("wishlist");
 
-    const wishlist = wishlistService.getFromLocalStorage('wishlist')
-
+    if (!wishlist) {
+      cartService.addToLocalStorage("wishlist", []);
+    }
+    console.log("wishlist", wishlist);
     let newWishlist = [...wishlist];
 
     const wishlistProduct = {
@@ -54,12 +55,18 @@ function ProductDetail() {
 
     newWishlist.push(wishlistProduct);
 
-    wishlistService.addToLocalStorage("wishlist", newWishlist);
+    cartService.addToLocalStorage("wishlist", newWishlist);
 
-    // navigate("/cart");
+    navigate("/profile");
   };
 
   useEffect(() => {
+    const wishlist = cartService.getFromLocalStorage("wishlist");
+    const cart = cartService.getFromLocalStorage("cart");
+    if (!wishlist || !cart) {
+      cartService.addToLocalStorage("wishlist", []);
+      cartService.addToLocalStorage("cart", []);
+    }
     axios
       .get(`${process.env.REACT_APP_API_URL}/api/search/results/${productId}`)
       .then((response) => {

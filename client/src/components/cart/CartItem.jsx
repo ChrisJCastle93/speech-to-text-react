@@ -15,7 +15,7 @@ const QuantitySelect = (props) => {
 };
 
 export const CartItem = (props) => {
-  const { name, description, quantity, image, currency, price, onChangeQuantity, onClickDelete, id } = props;
+  const { name, description, quantity, image, currency, price, onChangeQuantity, onClickDelete, id, noQuantity } = props;
 
   return (
     <Flex
@@ -62,7 +62,7 @@ export const CartItem = (props) => {
         <Link aria-label={`Delete ${name} from cart`} onClick={() => onClickDelete(id)}>
           Delete
         </Link>
-        <QuantitySelect
+         <QuantitySelect
           data-id={id}
           value={quantity}
           onChange={(e) => {
