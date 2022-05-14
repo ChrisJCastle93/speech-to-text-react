@@ -3,7 +3,7 @@ import React from 'react'
 import { Routes, Route, Link} from "react-router-dom";
 import Home from "./components/Home";
 import Test from "./components/search/Microphone";
-import SearchContainer from "./components/search/SearchContainer";
+// import SearchContainer from "./components/search/SearchContainer";
 import SearchResults from "./views/SearchResults";
 import { ChakraProvider } from "@chakra-ui/react";
 import { useState } from "react";
@@ -15,8 +15,10 @@ import Cart from "./views/cart/Cart";
 import Profile from "./views/Profile";
 import ProductDetail from './components/ProductDetail';
 import Checkout from './views/checkout/Checkout';
-import AuthButtonDisplay from "./components/AuthButtonDisplay";
+// import AuthButtonDisplay from "./components/AuthButtonDisplay";
 import { UpdateUserForm } from "./views/auth/UpdateUserForm";
+import Navbar from './components/Navbar';
+
 
 function App() {
   let [searchResultsArray, setSearchResultsArray] = useState([]);
@@ -59,11 +61,17 @@ function App() {
       <div>Loading.....</div>
     ) : (
         <div className="App">
-        <Link to="/profile/edit">edit profile</Link>
+        <Navbar 
+            loggedInUser={loggedInUser}
+            logoutHandler={logoutHandler}
+            handleSearchResults={handleSearchResults}
+
+        />
+        {/* <Link to="/profile/edit">edit profile</Link>
           <AuthButtonDisplay
             loggedInUser={loggedInUser}
             logoutHandler={logoutHandler}
-          />
+          /> */}
           <Routes>
             <Route path="/" element={<Home loggedInUser={loggedInUser} />} />
             <Route path="/test" element={<Test />} />
@@ -72,7 +80,7 @@ function App() {
             <Route path="/signup" element={<Signup setLoggedInUser={setLoggedInUser}/>} />
             <Route path="/login" element={<Login setLoggedInUser={setLoggedInUser}/>} />
             <Route path="/profile" element={<Profile loggedInUser={loggedInUser}/>} />
-            <Route path="/search" element={<SearchContainer handleSearchResults={handleSearchResults} />} />
+            {/* <Route path="/search" element={<SearchContainer handleSearchResults={handleSearchResults} />} /> */}
             <Route path="/search/results" element={<SearchResults searchResultsArray={searchResultsArray} />} />
             <Route path="/search/results/:id" element={<ProductDetail />} />
             <Route path="/checkout/:id" element={<Checkout loggedInUser={loggedInUser} />} />
