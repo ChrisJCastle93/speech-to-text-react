@@ -1,6 +1,6 @@
 
 import React from 'react'
-import { Routes, Route, Link} from "react-router-dom";
+import { Routes, Route } from "react-router-dom";
 import Home from "./components/Home";
 import Test from "./components/search/Microphone";
 // import SearchContainer from "./components/search/SearchContainer";
@@ -27,18 +27,13 @@ function App() {
 
   const [loggedInUser, setLoggedInUser] = useState(null);
   const [loading, setLoading] = useState(true);
-  console.log("loggedInUser", loggedInUser);
 
   React.useEffect(() => {
     const fetchUser = async () => {
-      console.log("fetching...");
       const res = await apiService.isLoggedIn();
-
-      console.log(res);
       setLoggedInUser(res.data);
       setLoading(false);
     };
-    console.log("use effect triggering");
     fetchUser();
   }, []);
 
@@ -51,8 +46,6 @@ function App() {
   const handleSearchResults = (searchResults) => {
     setSearchResultsArray(searchResults.data);
   };
-
-  console.log(loggedInUser);
 
   return (
 

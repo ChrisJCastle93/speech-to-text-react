@@ -2,8 +2,8 @@ import React from 'react';
 import { Link } from "react-router-dom";
 import AuthButtonDisplay from './AuthButtonDisplay';
 import SearchContainer from './search/SearchContainer';
-import Microphone from './search/Microphone';
-import SearchBar from './search/SearchBar';
+// import Microphone from './search/Microphone';
+// import SearchBar from './search/SearchBar';
 import "./../css/Navbar.css";
 
 
