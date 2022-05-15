@@ -2,6 +2,7 @@ import React from "react";
 import apiService from "../services/auth";
 import { useNavigate } from 'react-router-dom';
 import { useForm } from "react-hook-form";
+import "../../css/authForm.css"
 
 export const Signup = (props) => {
   const navigate = useNavigate();
@@ -29,7 +30,7 @@ export const Signup = (props) => {
   //     })
   //  }
   return (
-      <form onSubmit={handleSubmit(onSubmit)}>
+      <form className="signup" onSubmit={handleSubmit(onSubmit)}>
         <input
           {...register("username", {
             required: "Please enter a valid username",
@@ -39,14 +40,14 @@ export const Signup = (props) => {
         />
         <p>{errors.username?.message}</p>
 
-        <input
+        <input className="label"
           {...register("email", { required: "Please enter a valid email" })}
           placeholder="Email"
           name="email"
         />
         <p>{errors.email?.message}</p>
 
-        <input type="password"
+        <input className="label" type="password"
           {...register("password", {
             required: "This is required",
             minLength: {
@@ -58,7 +59,7 @@ export const Signup = (props) => {
           name="password"
         />
         <p>{errors.password?.message}</p>
-        <button type="submit">Sign up</button>
+        <button className="btn" type="submit">Sign up</button>
       </form>
   );
 };

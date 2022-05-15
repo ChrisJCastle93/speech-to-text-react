@@ -18,6 +18,7 @@ import Checkout from './views/checkout/Checkout';
 // import AuthButtonDisplay from "./components/AuthButtonDisplay";
 import { UpdateUserForm } from "./views/auth/UpdateUserForm";
 import Navbar from './components/Navbar';
+import '../src/css/authForm.css'
 
 
 function App() {

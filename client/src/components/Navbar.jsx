@@ -2,9 +2,9 @@ import React from 'react';
 import { Link } from "react-router-dom";
 import AuthButtonDisplay from './AuthButtonDisplay';
 import SearchContainer from './search/SearchContainer';
-import Microphone from './search/Microphone';
-import SearchBar from './search/SearchBar';
-import "./navbar.css";
+// import Microphone from './search/Microphone';
+// import SearchBar from './search/SearchBar';
+import "../css/navbar.css";
 
 
 export default function Navbar({loggedInUser, logoutHandler, handleSearchResults}) {
@@ -18,7 +18,7 @@ export default function Navbar({loggedInUser, logoutHandler, handleSearchResults
           <Microphone searchHandler={searchHandler} handleSubmit={handleSubmit} updateSpeechDone={updateSpeechDone} />
           <SearchBar searchTerm={searchTerm} searchHandler={searchHandler} handleSubmit={handleSubmit} />
           </div> */}
-        <SearchContainer
+        <SearchContainer className="search-cont"
           handleSearchResults={handleSearchResults}
          />
         <Link to="/profile/edit" className="auth-btn">edit profile</Link>

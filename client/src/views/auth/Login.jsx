@@ -3,6 +3,7 @@ import apiService from "../services/auth";
 // import { Link, useNavigate } from 'react-router-dom';
 import { useForm } from "react-hook-form";
 import { useNavigate } from 'react-router-dom';
+import "../../css/authForm.css"
 
 
 export const Login = (props) => {
@@ -18,29 +19,31 @@ export const Login = (props) => {
   };
 
   return (
-      <form onSubmit={handleSubmit(onSubmit)}>
-        <input
-          {...register("username", {
-            required: "Please enter a valid username",
-          })}
-          placeholder="Username"
-          name="username"
-        />
-        <p>{errors.username?.message}</p>
+      <div className="auth-div">
+        <form className="login" onSubmit={handleSubmit(onSubmit)}>
+          <input className="input"
+            {...register("username", {
+              required: "Please enter a valid username",
+            })}
+            placeholder="Username"
+            name="username"
+          />
+          <p>{errors.username?.message}</p>
 
-        <input type="password"
-          {...register("password", {
-            required: "This is required",
-            minLength: {
-              value: 8,
-              message: "Password must be over 8 characters",
-            },
-          })}
-          placeholder="enter a password"
-          name="password"
-        />
-        <p>{errors.password?.message}</p>
-        <button type="submit">Login</button>
-      </form>
+          <input className="label" type="password"
+            {...register("password", {
+              required: "This is required",
+              minLength: {
+                value: 8,
+                message: "Password must be over 8 characters",
+              },
+            })}
+            placeholder="enter a password"
+            name="password"
+          />
+          <p>{errors.password?.message}</p>
+          <button className="btn" type="submit">Login</button>
+        </form>
+      </div>
   );
 };
