@@ -26,7 +26,7 @@ export default function SearchContainer(props) {
     if (speechDone) {
       searchAmazon();
     }
-  }, [speechDone]);
+  }, [speechDone, searchTerm, searchAmazon]);
 
   const searchAmazon = async () => {
     const queryString = new URLSearchParams({ q: searchTerm }).toString();

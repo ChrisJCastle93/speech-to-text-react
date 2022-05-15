@@ -5,6 +5,10 @@ const axios = require("axios");
 const results = require("../utils/results.json");
 const productResult = require("../utils/productDetailsResult.json");
 
+const writeResultsToCache = () => {
+  fs.writeFile('../cache')
+}
+
 
 router.get("", (req, res) => {
   const amazonSearchQuery = req.query.q.replaceAll("+", " ");
