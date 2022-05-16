@@ -5,6 +5,7 @@
     width: 100vw;
     height: 10vh;
     overflow: auto;
+    float: right;
 }
 
 .search-cont {

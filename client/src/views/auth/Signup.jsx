@@ -1,6 +1,6 @@
 import React from "react";
 import apiService from "../services/auth";
-import { useNavigate } from 'react-router-dom';
+import { useNavigate, NavLink } from 'react-router-dom';
 import { useForm } from "react-hook-form";
 import "../../css/authForm.css";
 import authLamp from "../../assets/authLamp.png"
@@ -68,6 +68,8 @@ export const Signup = (props) => {
             <p>{errors.password?.message}</p>
             <button className="btn" type="submit">Sign up</button>
           </form>
+          <h2>Already have an account?</h2>
+          <NavLink to="/login" className="auth-btn">Log in</NavLink>
           </div>
           <img className="auth-img" src ={authLamp} alt="lamp-setting" />
     </container>

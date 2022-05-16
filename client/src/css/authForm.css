@@ -10,7 +10,7 @@
 	display: flex;
 	direction: column;
 	align-content: start;
-	width: 100vw;
+	width: auto;
 	height: 100vh;
 	background-color: #fff;
 	/* border-radius: 5px; */
@@ -35,6 +35,18 @@
 	margin-bottom: 20px;
 	padding-top: 40px;
 }
+
+.auth-div h2{
+	color: rgb(135, 134, 134);
+	font-family: "Gill Sans", sans-serif;
+	text-align: start;
+    letter-spacing: .15rem;
+	font-size: 18px;
+	margin: 28px auto;
+	margin-bottom: 20px;
+	padding: 200px 0 0 15px ;
+}
+
  form{
 	text-align: start;
 	width: 30vw;
@@ -82,5 +94,5 @@ form .btn:hover, input:hover,
 form .btn:active, input:active {
 	background-color: lightgray;
 	color: black;
-	border: 2px solid #1F78B4;
+	/* border: 2px solid #1F78B4; */
 }
