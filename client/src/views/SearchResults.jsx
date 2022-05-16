@@ -20,8 +20,9 @@ export default function SearchResults(props) {
         md: "8",
         lg: "12",
       }}
-    > 
+    >
       <ProductGrid>
+        {/* <h1>{products.length}</h1> */}
         {products.map((product) => (
           <ProductCard key={product.asin} product={product} />
         ))}
