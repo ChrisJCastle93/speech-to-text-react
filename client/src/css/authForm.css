@@ -6,39 +6,53 @@
 	font-family: "Arial", sans-serif;
 	padding: 50px;
 } */
-.app{
+.auth-container{
+	display: flex;
+	direction: column;
+	align-content: start;
+	width: 100vw;
+	height: 100vh;
+	background-color: #fff;
+	/* border-radius: 5px; */
 	margin: 20px auto;
 	padding: 10px;
-	width: 300px;
-	height: 300px;
-	background-color: #fff;
-	border-radius: 5px;
 }
- h1{
-	 width: 70%;
+
+.auth-img{
+	width: 100%;
+	height: 100vh;
+	/* align-self: flex-end; */
+	/* background-color: red; */
+}
+
+ .auth-div h1{
 	color: #777;
-	font-size: 32px;
+	text-align: Start;
+	font-size: 50px;
 	margin: 28px auto;
 	margin-bottom: 20px;
-	text-align: center;
-	/*padding-top: 40px;
+	padding-top: 40px;
 }
-form{
-	/*padding: 15px;*/
-	text-align: center;
+ form{
+	text-align: start;
+	width: 30vw;
+	padding: 15px; 
+	margin: 15px;
 }
 input{
 	padding: 12px 0;
 	margin-bottom: 10px;
 	border-radius: 3px;
 	border: 2px solid transparent;
-	text-align: center;
+	text-align: start;
 	width: 90%;
 	font-size: 16px;
+	border: 1px solid black;
 	transition: border .2s, background-color .2s;
 }
 form .label{
-	background-color: #ECF0F1;
+	font-family: "Arial", sans-serif;
+	/* background-color: #ECF0F1; */
 	/* background-color: white;
 	border: black;
 	border: 1px; */
@@ -51,9 +65,11 @@ form .btn{
 	color: #fff;
 	line-height: 25px;
 	cursor: pointer;
+	margin: 10px 0;
+	padding: 3px 5px; 
 }
-form .btn:hover,
-form .btn:active {
+form .btn:hover, input:hover,
+form .btn:active, input:active {
 	background-color: #1F78B4;
 	border: 2px solid #1F78B4;
 }

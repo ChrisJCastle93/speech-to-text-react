@@ -4,12 +4,13 @@ import AuthButtonDisplay from './AuthButtonDisplay';
 import SearchContainer from './search/SearchContainer';
 // import Microphone from './search/Microphone';
 // import SearchBar from './search/SearchBar';
-import "../css/navbar.css";
+// import "./css/navbar.css";
+import '../css/Navbar.css';
 
 
 export default function Navbar({loggedInUser, logoutHandler, handleSearchResults}) {
   return (
-    <div className="navbar">
+    <nav className="navbar">
         <AuthButtonDisplay   
             loggedInUser={loggedInUser}
             logoutHandler={logoutHandler}
@@ -23,6 +24,6 @@ export default function Navbar({loggedInUser, logoutHandler, handleSearchResults
          />
         <Link to="/profile/edit" className="auth-btn">edit profile</Link>
 
-    </div>
+    </nav>
   )
 }

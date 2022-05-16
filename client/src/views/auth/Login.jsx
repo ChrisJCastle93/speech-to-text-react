@@ -20,7 +20,8 @@ export const Login = (props) => {
 
   return (
       <div className="auth-div">
-        <form className="login" onSubmit={handleSubmit(onSubmit)}>
+      <h1>Welcome back</h1>
+        <form onSubmit={handleSubmit(onSubmit)}>
           <input className="input"
             {...register("username", {
               required: "Please enter a valid username",
@@ -30,7 +31,7 @@ export const Login = (props) => {
           />
           <p>{errors.username?.message}</p>
 
-          <input className="label" type="password"
+          <input type="password"
             {...register("password", {
               required: "This is required",
               minLength: {
