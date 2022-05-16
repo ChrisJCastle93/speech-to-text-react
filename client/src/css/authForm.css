@@ -27,7 +27,9 @@
 
  .auth-div h1{
 	color: #777;
+	font-family: "Gill Sans", sans-serif;
 	text-align: Start;
+    letter-spacing: .15rem;
 	font-size: 50px;
 	margin: 28px auto;
 	margin-bottom: 20px;
@@ -36,22 +38,25 @@
  form{
 	text-align: start;
 	width: 30vw;
-	padding: 15px; 
-	margin: 15px;
+	padding: 15px 15px;; 
+	margin: 15px 15px;
 }
 input{
-	padding: 12px 0;
-	margin-bottom: 10px;
 	border-radius: 3px;
 	border: 2px solid transparent;
 	text-align: start;
 	width: 90%;
-	font-size: 16px;
+	font-size: 0.8rem;
 	border: 1px solid black;
 	transition: border .2s, background-color .2s;
+	padding: 12px 0;
+	margin: 15px 15px
+	/* margin-bottom: 10px; */
 }
 form .label{
-	font-family: "Arial", sans-serif;
+	text-transform: uppercase;
+    font-size: 0.8rem;
+    letter-spacing: .15rem;
 	/* background-color: #ECF0F1; */
 	/* background-color: white;
 	border: black;
@@ -62,14 +67,20 @@ form .label:focus {
 }
 form .btn{
 	background-color: black;
+	text-transform: uppercase;
+    font-size: 0.8rem;
+    letter-spacing: .15rem;
 	color: #fff;
 	line-height: 25px;
 	cursor: pointer;
+	border-radius: 3px;
+	border: 2px solid transparent;
 	margin: 10px 0;
 	padding: 3px 5px; 
 }
 form .btn:hover, input:hover,
 form .btn:active, input:active {
-	background-color: #1F78B4;
+	background-color: lightgray;
+	color: black;
 	border: 2px solid #1F78B4;
 }
