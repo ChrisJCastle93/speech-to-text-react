@@ -8,8 +8,6 @@ export default function PromoContainer() {
   const [listOfPromo, setListOfPromo] = useState([]);
 
   React.useEffect(() => {
-    // How do I add fixed Search Term? -> Lamps
-
     const queryString = new URLSearchParams("q=designer+lamps");
     axios
       .get(`${process.env.REACT_APP_API_URL}/api/search?${queryString}`)
@@ -21,14 +19,25 @@ export default function PromoContainer() {
 
   return (
     <div>
-      {listOfPromo.map((x) => {
+        <section id="promo-box">
+      {listOfPromo.slice(0,3).map((x) => {
         return (
           <Link key={x.link} to={`/search/results/${x.asin}`}>
-            <img src={x.image} />
+            <img id="promo" src={x.image} alt={x.name}/>
           </Link>
         );
       })}{" "}
-      hello
+      </section>
+
+      <section id="promo-box">
+      {listOfPromo.slice(3,6).map((x) => {
+        return (
+          <Link key={x.link} to={`/search/results/${x.asin}`}>
+            <img id="promo" src={x.image} alt={x.name}/>
+          </Link>
+        );
+      })}{" "}
+      </section>
     </div>
   );
 }

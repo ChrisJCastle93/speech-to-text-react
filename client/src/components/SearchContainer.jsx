@@ -26,7 +26,7 @@ export default function SearchContainer(props) {
     if (speechDone) {
       searchAmazon();
     }
-  }, [speechDone]);
+  }, [speechDone, searchTerm, searchAmazon]);
 
   const searchAmazon = async () => {
     const queryString = new URLSearchParams({ q: searchTerm }).toString();
@@ -44,12 +44,12 @@ export default function SearchContainer(props) {
 
   return (
     <div>
-      <Center>
-        <HStack mt={10}>
+      {/* <Center>
+        <HStack mt={10}> */}
           <SearchBar searchTerm={searchTerm} searchHandler={searchHandler} handleSubmit={handleSubmit} />
           <Microphone searchHandler={searchHandler} handleSubmit={handleSubmit} updateSpeechDone={updateSpeechDone} />
-        </HStack>
-      </Center>
+        {/* </HStack>
+      </Center> */}
     </div>
   );
 }

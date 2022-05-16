@@ -102,7 +102,7 @@ export default function Cart(props) {
 
             <Stack spacing="6">
               {cartData.map((item) => (
-                <CartItem key={item.id} {...item} onClickDelete={onClickDelete} onChangeQuantity={onChangeQuantity} />
+                <CartItem key={item.id} {...item} onClickDelete={onClickDelete} onChangeQuantity={onChangeQuantity} isCart/>
               ))}
             </Stack>
           </Stack>
