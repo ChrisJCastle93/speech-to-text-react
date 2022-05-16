@@ -33,7 +33,7 @@ export const Signup = (props) => {
   return (
     <container className="auth-container">
       <div className="auth-div">
-        <h1 >Welcome back</h1>
+        <h1 >Become a Laddy</h1>
           <form className="signup" onSubmit={handleSubmit(onSubmit)}>
           <label className="label" for="signup">Username:</label>
             <input

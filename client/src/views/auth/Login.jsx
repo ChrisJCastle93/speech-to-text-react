@@ -3,6 +3,7 @@ import apiService from "../services/auth";
 // import { Link, useNavigate } from 'react-router-dom';
 import { useForm } from "react-hook-form";
 import { useNavigate } from 'react-router-dom';
+import authLamp from "../../assets/authLamp.png"
 import "../../css/authForm.css"
 
 
@@ -19,9 +20,11 @@ export const Login = (props) => {
   };
 
   return (
+    <container className="auth-container">
       <div className="auth-div">
       <h1>Welcome back</h1>
         <form onSubmit={handleSubmit(onSubmit)}>
+        <label className="label" for="login">Username:</label>
           <input className="input"
             {...register("username", {
               required: "Please enter a valid username",
@@ -30,7 +33,8 @@ export const Login = (props) => {
             name="username"
           />
           <p>{errors.username?.message}</p>
-
+          
+          <label className="label" for="password">Password:</label>
           <input type="password"
             {...register("password", {
               required: "This is required",
@@ -45,6 +49,8 @@ export const Login = (props) => {
           <p>{errors.password?.message}</p>
           <button className="btn" type="submit">Login</button>
         </form>
-      </div>
+        </div>
+        <img className="auth-img" src ={authLamp} alt="lamp-setting" />
+      </container>
   );
 };
