@@ -30,14 +30,15 @@ const cacheSearch = async (req, res, next) => {
 
 const cacheProduct = async (req, res, next) => {
   const productToSearch = req.params.id;
-
+  
   const client = await redis.createClient(REDIS_PORT);
   await client.connect();
   req.client = client;
   const data = await client.get(productToSearch);
-
+  
   if (data !== null) {
     const parsedData = JSON.parse(data);
+    console.log('FROM CACHE')
     res.json(parsedData);
   } else {
     console.log("NOTHING IN CACHE");
@@ -88,6 +89,8 @@ router.get("/results/:id", cacheProduct, async (req, res, next) => {
     const productResults = response.data;
 
     await client.set(productToSearch, JSON.stringify(productResults), 3600);
+    console.log('NOT FROM CACHE')
+    console.log(productResults)
 
     res.json(productResults);
 
