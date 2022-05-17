@@ -8,7 +8,7 @@ const productResult = require("../utils/productDetailsResult.json");
 const redis = require("redis");
 const REDIS_PORT = process.env.REDIS_PORT || 6379;
 
-const cache = async (req, res, next) => {
+const cacheSearch = async (req, res, next) => {
   const amazonSearchQuery = req.query.q.replaceAll("+", " ");
 
   const client = await redis.createClient(REDIS_PORT);
@@ -17,24 +17,35 @@ const cache = async (req, res, next) => {
   const data = await client.get(amazonSearchQuery);
 
   if (data !== null) {
+    const parsedData = JSON.parse(data);
 
-    const parsedData = JSON.parse(data)
-    console.log(parsedData.length)
-    
     const filteredData = parsedData.filter((item) => !!item.prices);
-    
-    console.log(filteredData.length)
-    // console.log(filteredData[0])
 
-    res.json((filteredData));
-    // res.json(JSON.parse(data));
+    res.json(filteredData);
   } else {
     console.log("NOTHING IN CACHE");
     next();
   }
 };
 
-router.get("", cache, async (req, res) => {
+const cacheProduct = async (req, res, next) => {
+  const productToSearch = req.params.id;
+
+  const client = await redis.createClient(REDIS_PORT);
+  await client.connect();
+  req.client = client;
+  const data = await client.get(productToSearch);
+
+  if (data !== null) {
+    const parsedData = JSON.parse(data);
+    res.json(parsedData);
+  } else {
+    console.log("NOTHING IN CACHE");
+    next();
+  }
+};
+
+router.get("", cacheSearch, async (req, res) => {
   try {
     const { client } = req;
 
@@ -50,22 +61,39 @@ router.get("", cache, async (req, res) => {
     const response = await axios.get("https://api.rainforestapi.com/request", { params });
     const searchResults = response.data.search_results;
     await client.set(amazonSearchQuery, JSON.stringify(searchResults), 3600);
-    res.json(searchResults);
+    const filteredData = searchResults.filter((item) => !!item.prices);
+    res.json(filteredData);
   } catch (err) {
     console.log(err);
   }
 });
 
-router.get("/results/:id", (req, res) => {
-  res.json(productResult);
-  // axios
-  //   .get(`https://api.rainforestapi.com/request?api_key=E88D8E7E60414947A17F2AD00221C1F9&type=product&amazon_domain=amazon.com&asin=${req.params.id}`)
-  //   .then((response) => {
-  //     res.json(response.data);
-  //   })
-  //   .catch((error) => {
-  //     console.log(error);
-  //   });
+router.get("/results/:id", cacheProduct, async (req, res, next) => {
+  try {
+    const { client } = req;
+
+    const productToSearch = req.params.id;
+
+    console.log('PRODUCT TO SEARCH', productToSearch)
+
+    const params = {
+      api_key: "E88D8E7E60414947A17F2AD00221C1F9",
+      type: "product",
+      amazon_domain: "amazon.de",
+      asin: productToSearch,
+    };
+
+    const response = await axios.get("https://api.rainforestapi.com/request", { params })
+
+    const productResults = response.data;
+
+    await client.set(productToSearch, JSON.stringify(productResults), 3600);
+
+    res.json(productResults);
+
+  } catch (err) {
+    console.log(err);
+  }
 });
 
 module.exports = router;
