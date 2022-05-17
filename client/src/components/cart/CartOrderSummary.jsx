@@ -1,8 +1,9 @@
 import { Button, Flex, Heading, Stack, Text } from "@chakra-ui/react";
-import * as React from "react";
+// import * as React from "react";
 import { FaArrowRight } from "react-icons/fa";
-import { useNavigate } from "react-router-dom";
+import { useNavigate, Link } from "react-router-dom";
 import { formatPrice } from "./PriceTag";
+import { useHistory } from "react-router-dom";
 
 export const CartOrderSummary = (props) => {
   let { cartData, loggedInUser } = props;
@@ -14,10 +15,11 @@ export const CartOrderSummary = (props) => {
     totalPrice += itemTotal;
   });
 
-  const navigate = useNavigate()
+  const navigate = useNavigate();
 
   const loginRedirect = () => {
-    navigate('/login')
+    props.setIsComingFromCart(true);
+    navigate(`/login`);
   };
 
   return (
