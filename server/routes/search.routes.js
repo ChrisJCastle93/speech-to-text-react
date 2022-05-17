@@ -46,7 +46,7 @@ const cacheProduct = async (req, res, next) => {
   }
 };
 
-router.get("", cacheSearch, async (req, res) => {
+router.get("/", cacheSearch, async (req, res) => {
   try {
     const { client } = req;
 

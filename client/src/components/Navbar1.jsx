@@ -22,7 +22,7 @@ import SearchContainer from './search/SearchContainer'
         <Container py={{ base: '4', lg: '5' }}>
           <HStack spacing="10" justify="space-between">
             {/* <Logo /> */}
-            <SearchContainer />
+            <SearchContainer  handleSearchResults={props.handleSearchResults}/>
             {isDesktop ? (
               <Flex justify="space-between" flex="1">
                 <ButtonGroup variant="link" spacing="8">
