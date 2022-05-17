@@ -2,13 +2,14 @@ import React from "react";
 import axios from "axios";
 import { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
-import "../css/PromoContainer.css"
+import "../css/PromoContainer.css";
+import { Box, Image, Badge } from "@chakra-ui/react";
 
 export default function PromoContainer() {
   const [listOfPromo, setListOfPromo] = useState([]);
 
   React.useEffect(() => {
-    // How do I add fixed Search Term? -> Lamps
+
 
     const queryString = new URLSearchParams("q=designer+lamps");
     axios
@@ -19,27 +20,57 @@ export default function PromoContainer() {
       .catch((err) => console.log(err));
   }, []);
 
+
   return (
     <div>
         <section id="promo-box">
-      {listOfPromo.slice(0,3).map((x) => {
+      {listOfPromo.map((x) => {
         return (
           <Link key={x.link} to={`/search/results/${x.asin}`}>
-            <img id="promo"   src={x.image} />
+            <Box maxW='sm' borderWidth='1px' borderRadius='lg' overflow='hidden'>
+<Image src={x.image} id="promo" />
+
+<Box p='6'>
+  <Box display='flex' alignItems='baseline'>
+    <Badge borderRadius='full' px='2' colorScheme='teal'>
+      New
+    </Badge>
+    <Box
+      color='gray.500'
+      fontWeight='semibold'
+      letterSpacing='wide'
+      fontSize='xs'
+      textTransform='uppercase'
+      ml='2'
+    >
+      Designer &bull; Lamps
+    </Box>
+  </Box>
+
+  <Box
+    mt='1'
+    fontWeight='semibold'
+    as='h4'
+    lineHeight='tight'
+    noOfLines={1}
+  >
+    {x.title}
+  </Box>
+  <Box>
+          {x.price.value}
+          <Box as='span' color='gray.600' fontSize='sm'>
+            / EUR
+          </Box>
+        </Box>
+
+</Box>
+</Box>
           </Link>
         );
       })}{" "}
       </section>
 
-      <section id="promo-box">
-{listOfPromo.slice(3,6).map((x) => {
-        return (
-          <Link key={x.link} to={`/search/results/${x.asin}`}>
-            <img id="promo"  src={x.image} />
-          </Link>
-        );
-      })}{" "}
-      </section>
     </div>
-  );
+  )
+  
 }

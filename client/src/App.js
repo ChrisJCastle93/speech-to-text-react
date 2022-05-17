@@ -65,8 +65,9 @@ function App() {
             loggedInUser={loggedInUser}
             logoutHandler={logoutHandler}
             handleSearchResults={handleSearchResults}
-
         />
+
+
         {/* <Link to="/profile/edit">edit profile</Link>
           <AuthButtonDisplay
             loggedInUser={loggedInUser}

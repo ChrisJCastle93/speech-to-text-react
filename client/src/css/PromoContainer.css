@@ -1,13 +1,13 @@
 #promo {
     height: 200px;
+    width: auto;
     padding: 20px;
-    box-sizing: border-box;
-    border: 1px solid #f0b87c;
-    margin: 10px;
+
   }
 
   #promo-box {
       display: flex;
       justify-content: flex-start;
-      border: 10px solid #f0b87c;
+
+      
   }

@@ -3,7 +3,8 @@ import { Link } from 'react-router-dom';
 import React from 'react';
 import header from '../assets/header.jpeg'
 import PromoContainer from './PromoContainer';
-import '../css/Home.css'
+import '../css/Home.css';
+
 
 function Home(props) {
   return (
@@ -23,10 +24,7 @@ function Home(props) {
 
       </section>
 
-      <footer>
-        <p>This is made by Annabelle, Chris and Caro</p>
-      </footer> 
-
+  
       </div>
   );
 }
