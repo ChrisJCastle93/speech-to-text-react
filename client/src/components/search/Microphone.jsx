@@ -56,7 +56,7 @@ export default function Microphone(props) {
   };
 
   return (
-    <div className="mic">
+    <div className="">
       <form onSubmit={props.handleSubmit}>
         <IconButton p={2} icon={<StopIcon />} display={stopButtonDisplay} type="submit" id="stop">
         </IconButton>

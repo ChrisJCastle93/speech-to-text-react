@@ -10,18 +10,21 @@ export default function AuthButtonDisplay(props) {
                 !props.loggedInUser ?
                     <>
                         <NavLink to="/signup" activeclassname="active" className="auth-btn">Signup</NavLink>
+
                         <NavLink to="/login" activeclassname="active" className="auth-btn">Login</NavLink>
+
                     </>
                     :
                     <>
                         <NavLink to="/profile" activeclassname="active" className="auth-btn">Profile</NavLink>
-                        <button onClick={props.logoutHandler} className="danger auth-btn">Logout</button>
+                        
+                        <button onClick={props.logoutHandler} className="danger auth-btn">Logout</button>              
                     </>
             }
         </header>
 
 
-        <h1>{props.loggedInUser ? `Welcome ${props.loggedInUser.username}` : 'Welcome to Lamp Daddy' }</h1>
+        {/* <h1>{props.loggedInUser ? `Welcome ${props.loggedInUser.username}` : 'Welcome to Lamp Daddy' }</h1> */}
     
     </div>
   )
