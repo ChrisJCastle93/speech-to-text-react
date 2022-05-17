@@ -13,7 +13,6 @@ function ProductDetail() {
   const [isWishListed, setIsWishListed] = useState(false);
   const params = useParams();
   const productId = params.id;
-
   const navigate = useNavigate();
 
   const resetCart = () => {
@@ -25,17 +24,38 @@ function ProductDetail() {
 
     let newCart = [...cart];
 
+    let cartPrice = 10;
+    if (product.price) {
+      cartPrice = product.price.value;
+    }
+
     const cartProduct = {
       id: product.asin,
       name: product.title,
-      price: product.variants[0].price.value,
+      price: cartPrice,
+      // price: product.variants[0].price.value,
       image: product.variants[0].main_image,
       quantity: 1,
     };
 
-    newCart.push(cartProduct);
+    let cartUpdated;
 
-    cartService.addToLocalStorage("cart", newCart);
+    newCart.map((item) => {
+      if (item.id == cartProduct.id) {
+        console.log("PRODUCT ALREADY IN CART");
+        console.log('INCREASING QTY')
+        item.quantity++;
+        console.log(item.quantity)
+        cartService.addToLocalStorage("cart", newCart);
+        cartUpdated = true;
+      }
+    });
+
+    if (!cartUpdated) {
+      console.log('LOOKS LIKE A NEW PRODUCT, ADDING TO CART')
+      newCart.push(cartProduct);
+      cartService.addToLocalStorage("cart", newCart);
+    }
 
     navigate("/cart");
   };
@@ -104,7 +124,7 @@ function ProductDetail() {
                   {product.variants[0].price.value} {product.variants[0].price.symbol}
                 </Text>
               ) : (
-                <></>
+                <p>NO PRICE FOUND</p>
               )}
             </Box>
 
