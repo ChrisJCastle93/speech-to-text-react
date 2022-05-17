@@ -6,8 +6,6 @@ export const Rating = (props) => {
 
   const { defaultValue = 0, max = 5, size = "md", rootProps } = props;
 
-  console.log('default =>', defaultValue)
-
   const color = useColorModeValue("gray.200", "gray.600");
   const activeColor = useColorModeValue("blue.500", "blue.200");
 
