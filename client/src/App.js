@@ -1,9 +1,9 @@
 
 import React from 'react'
-import { Routes, Route, Link} from "react-router-dom";
+import { Routes, Route } from "react-router-dom";
 import Home from "./components/Home";
 import Test from "./components/search/Microphone";
-// import SearchContainer from "./components/search/SearchContainer";
+import SearchContainer from "./components/search/SearchContainer";
 import SearchResults from "./views/SearchResults";
 import { ChakraProvider } from "@chakra-ui/react";
 import { useState } from "react";
@@ -17,7 +17,8 @@ import ProductDetail from './components/ProductDetail';
 import Checkout from './views/checkout/Checkout';
 // import AuthButtonDisplay from "./components/AuthButtonDisplay";
 import { UpdateUserForm } from "./views/auth/UpdateUserForm";
-import Navbar from './components/Navbar';
+import Navbar from './components/Navbar1';
+import '../src/css/authForm.css'
 
 
 function App() {
@@ -27,18 +28,13 @@ function App() {
 
   const [loggedInUser, setLoggedInUser] = useState(null);
   const [loading, setLoading] = useState(true);
-  console.log("loggedInUser", loggedInUser);
 
   React.useEffect(() => {
     const fetchUser = async () => {
-      console.log("fetching...");
       const res = await apiService.isLoggedIn();
-
-      console.log(res);
       setLoggedInUser(res.data);
       setLoading(false);
     };
-    console.log("use effect triggering");
     fetchUser();
   }, []);
 
@@ -51,8 +47,6 @@ function App() {
   const handleSearchResults = (searchResults) => {
     setSearchResultsArray(searchResults.data);
   };
-
-  console.log(loggedInUser);
 
   return (
 
@@ -81,7 +75,7 @@ function App() {
             <Route path="/signup" element={<Signup setLoggedInUser={setLoggedInUser}/>} />
             <Route path="/login" element={<Login setLoggedInUser={setLoggedInUser}/>} />
             <Route path="/profile" element={<Profile loggedInUser={loggedInUser}/>} />
-            {/* <Route path="/search" element={<SearchContainer handleSearchResults={handleSearchResults} />} /> */}
+            <Route path="/search" element={<SearchContainer handleSearchResults={handleSearchResults} />} />
             <Route path="/search/results" element={<SearchResults searchResultsArray={searchResultsArray} />} />
             <Route path="/search/results/:id" element={<ProductDetail />} />
             <Route path="/checkout/:id" element={<Checkout loggedInUser={loggedInUser} />} />

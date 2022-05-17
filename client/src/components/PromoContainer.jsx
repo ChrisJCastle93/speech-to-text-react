@@ -10,7 +10,6 @@ export default function PromoContainer() {
 
   React.useEffect(() => {
 
-
     const queryString = new URLSearchParams("q=designer+lamps");
     axios
       .get(`${process.env.REACT_APP_API_URL}/api/search?${queryString}`)
@@ -27,6 +26,7 @@ export default function PromoContainer() {
       {listOfPromo.map((x) => {
         return (
           <Link key={x.link} to={`/search/results/${x.asin}`}>
+
             <Box maxW='sm' borderWidth='1px' borderRadius='lg' overflow='hidden'>
 <Image src={x.image} id="promo" />
 
