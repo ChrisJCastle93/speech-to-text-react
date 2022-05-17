@@ -1,8 +1,4 @@
-<<<<<<< HEAD
 import { Center, HStack,Box } from "@chakra-ui/react";
-=======
-// import { Center, HStack } from "@chakra-ui/react";
->>>>>>> new-dev
 import axios from "axios";
 import React, { useEffect, useState } from "react";
 import SearchBar from "./SearchBar";
