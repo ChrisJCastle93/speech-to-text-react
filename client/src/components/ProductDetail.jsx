@@ -99,9 +99,13 @@ function ProductDetail() {
               <Heading lineHeight={1.1} fontWeight={600} fontSize={{ base: "xl", sm: "2xl", lg: "3xl" }}>
                 {product.title}
               </Heading>
-              <Text color="gray.900" fontWeight={300} fontSize={"2xl"}>
-                {product.variants[0].price.value} {product.variants[0].price.symbol}
-              </Text>
+              {product.variants[0].price ? (
+                <Text color="gray.900" fontWeight={300} fontSize={"2xl"}>
+                  {product.variants[0].price.value} {product.variants[0].price.symbol}
+                </Text>
+              ) : (
+                <></>
+              )}
             </Box>
 
             <Stack spacing={{ base: 4, sm: 6 }} direction={"column"} divider={<StackDivider color="gray.500" />}>
