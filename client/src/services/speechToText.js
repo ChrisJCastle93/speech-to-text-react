@@ -8,7 +8,7 @@ class Service {
   }
 
   createNewSearch = (formData) => {
-    return this.service.post(`/convertspeech`, formData, {
+    return this.service.post(`api/convertspeech`, formData, {
       headers: {
         "Content-Type": "multipart/form-data",
       },
