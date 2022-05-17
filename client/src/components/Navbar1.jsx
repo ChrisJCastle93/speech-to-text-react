@@ -1,7 +1,7 @@
 import {
   Box,
   Button,
-  ButtonGroup,
+//   ButtonGroup,
   Container,
   Flex,
   HStack,
@@ -13,6 +13,8 @@ import * as React from 'react'
 import { FiMenu } from 'react-icons/fi'
 // import { Logo } from './Logo'
 import SearchContainer from './search/SearchContainer'
+import {NavLink} from 'react-router-dom';
+
 
  const Navbar = (props) => {
   const isDesktop = useBreakpointValue({ base: false, lg: true })
@@ -25,14 +27,32 @@ import SearchContainer from './search/SearchContainer'
             <SearchContainer  handleSearchResults={props.handleSearchResults}/>
             {isDesktop ? (
               <Flex justify="space-between" flex="1">
-                <ButtonGroup variant="link" spacing="8">
+                {/* <ButtonGroup variant="link" spacing="8">
                   {['Product', 'Pricing', 'Resources', 'Support'].map((item) => (
                     <Button key={item}>{item}</Button>
                   ))}
-                </ButtonGroup>
+                </ButtonGroup> */}
                 <HStack spacing="3">
-                  <Button variant="ghost">Sign in</Button>
-                  <Button variant="primary">Sign up</Button>
+                <NavLink to="/" activeclassname="active" className="auth-btn">Home</NavLink>
+            {
+                !props.loggedInUser ?
+                    <>
+                        <NavLink to="/signup" variant="primary" activeclassname="active" className="auth-btn">Signup</NavLink>
+
+                        <NavLink to="/login" variant="ghost" activeclassname="active" className="auth-btn">Login</NavLink>
+
+                    </>
+                    :
+                    <>
+                        <NavLink to="/profile" variant="ghost" activeclassname="active" className="auth-btn">Profile</NavLink>
+                        
+                        <Button onClick={props.logoutHandler} variant="ghost" className="danger auth-btn">Log out</Button>              
+                    </>
+            }
+                  {/* <Navlink variant="ghost" to="/signup">Sign in</Navlink>
+                  <Navlink variant="ghost" to="/login">Log in</Navlink>
+                  <Navlink variant="ghost" to="/profile">Profile</Navlink>
+                  <Button variant="primary">Sign up</Button> */}
                 </HStack>
               </Flex>
             ) : (
