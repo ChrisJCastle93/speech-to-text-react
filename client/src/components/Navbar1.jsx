@@ -20,9 +20,16 @@ import { useState } from "react";
 
  const Navbar = (props) => {
   const isDesktop = useBreakpointValue({ base: false, lg: true })
-  const { dropDown, isDroppedDown } = useState(true);
+  const { notDroppedDown, isDroppedDown } = useState(true);
 
-    
+  const onClick = () => {
+    const menu = notDroppedDown;
+    const displayMenu = menu(isDroppedDown);
+
+    isDroppedDown(displayMenu)
+  };
+
+
 
 
 
@@ -30,14 +37,16 @@ import { useState } from "react";
     <Box as="section" pb={{ base: '12', md: '24' }}>
       <Box as="nav" bg="bg-surface" boxShadow={useColorModeValue('sm', 'sm-dark')}>
         <Container py={{ base: '4', lg: '5' }}>
-          <HStack spacing="10" justify="space-between">
+        {/* <HStack spacing="10" justify="space-between"> */}
+        <HStack spacing="5px" justify="space-evenly">
             <SearchContainer  handleSearchResults={props.handleSearchResults}/>
             {
                 isDesktop ?
                 (
                 <Flex justify="space-between" flex="1">
 
-                    <HStack spacing="3">
+                    {/* <HStack spacing="3"> */}
+                    <HStack spacing="3px">
                         <NavLink to="/" activeclassname="active" className="auth-btn">Home</NavLink>
                         {
                         !props.loggedInUser ?
@@ -67,7 +76,7 @@ import { useState } from "react";
                 onClick={isDroppedDown} 
                 />
                 {
-                    dropDown && (
+                    isDroppedDown && (
                     <Box as="section">
                     {
                     !props.loggedInUser ?
