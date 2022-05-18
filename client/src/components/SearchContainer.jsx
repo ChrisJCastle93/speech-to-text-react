@@ -1,4 +1,4 @@
-import { Center, HStack } from "@chakra-ui/react";
+// import { Center, HStack } from "@chakra-ui/react";
 import axios from "axios";
 import React, { useEffect, useState } from "react";
 import SearchBar from "../components/search/SearchBar";
@@ -26,7 +26,7 @@ export default function SearchContainer(props) {
     if (speechDone) {
       searchAmazon();
     }
-  }, [speechDone]);
+  }, [speechDone, searchTerm, searchAmazon]);
 
   const searchAmazon = async () => {
     const queryString = new URLSearchParams({ q: searchTerm }).toString();
@@ -43,13 +43,17 @@ export default function SearchContainer(props) {
   };
 
   return (
-    <div>
-      <Center>
-        <HStack mt={10}>
-          <SearchBar searchTerm={searchTerm} searchHandler={searchHandler} handleSubmit={handleSubmit} />
-          <Microphone searchHandler={searchHandler} handleSubmit={handleSubmit} updateSpeechDone={updateSpeechDone} />
-        </HStack>
-      </Center>
-    </div>
+      <ul>
+      {/* <Center>
+        <HStack mt={10}> */}
+        <li>
+          <SearchBar className="search-bar" searchTerm={searchTerm} searchHandler={searchHandler} handleSubmit={handleSubmit} /> 
+        </li>
+        <li>
+          <Microphone className="mic" searchHandler={searchHandler} handleSubmit={handleSubmit} updateSpeechDone={updateSpeechDone} />
+        </li>
+        {/* </HStack>
+      </Center> */}
+      </ul>
   );
 }

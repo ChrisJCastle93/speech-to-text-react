@@ -33,3 +33,12 @@ footer {
 
 }
 
+
+
+.text:hover {
+    font-variation-settings: "wght" 100, "ital" 0;
+    text-shadow: none;
+  }
+
+
+
