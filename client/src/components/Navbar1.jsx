@@ -29,15 +29,15 @@ import { useState } from "react";
  const Navbar = (props) => {
   const isDesktop = useBreakpointValue({ base: false, lg: true })
   // const { notDroppedDown, isDroppedDown } = useState(true);
-  const [isDropDown, setIsDropDown] = useState(true);
+  // const [isDropDown, setIsDropDown] = useState(true);
 
-  const openDropDown = () => {
-    setIsDropDown(true)
-  };
+  // const openDropDown = () => {
+  //   setIsDropDown(true)
+  // };
 
-  const closeDropDown = () => {
-    setIsDropDown(false)
-  };
+  // const closeDropDown = () => {
+  //   setIsDropDown(false)
+  // };
 
 
   return (
@@ -95,6 +95,13 @@ import { useState } from "react";
     variant='outline'
   />
                         <MenuList>
+
+                        <Link to="/" activeclassname="active" className="auth-btn">
+                        <MenuItem >
+                            Home
+                          </MenuItem>
+                        </Link>
+
                         {
                     !props.loggedInUser ?
                         <>
