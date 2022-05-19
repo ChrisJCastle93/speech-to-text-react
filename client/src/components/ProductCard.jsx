@@ -1,4 +1,4 @@
-import { AspectRatio, Box, HStack, Image, Skeleton, Stack, Text, useBreakpointValue, useColorModeValue } from "@chakra-ui/react";
+import { AspectRatio, Box, Button, HStack, Image, Skeleton, Stack, Text, useBreakpointValue, useColorModeValue } from "@chakra-ui/react";
 import { Link } from "react-router-dom";
 
 import * as React from "react";
@@ -46,9 +46,11 @@ export const ProductCard = (props) => {
           </Text>
         </HStack>
       </Stack>
+      <Button colorScheme='teal'>
       <Link to={`/search/results/${product.asin}`}>
-         More Infooooo
+         More Info
       </Link>
+      </Button>
     </Stack>
   );
 };
