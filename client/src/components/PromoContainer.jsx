@@ -33,7 +33,7 @@ export default function PromoContainer() {
 <Box p='6'>
   <Box display='flex' alignItems='baseline'>
     <Badge borderRadius='full' px='2' colorScheme='teal'>
-      New
+      That's Hot!
     </Badge>
     <Box
       color='gray.500'

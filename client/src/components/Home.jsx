@@ -13,7 +13,7 @@ function Home(props) {
 
 
       <section className="header">
-      <h1 className="text">Lamp Daddy</h1>
+     <h1 className="text">Paris Lamps</h1>
       </section>
 
       <section>
