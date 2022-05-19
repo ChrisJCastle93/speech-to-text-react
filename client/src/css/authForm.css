@@ -1,6 +1,10 @@
  *{
 	box-sizing: border-box;
 }
+
+section {
+	height: 124px
+}
 /* body{
 	background-color: #3498DB;
 	font-family: "Arial", sans-serif;

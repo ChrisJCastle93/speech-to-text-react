@@ -1,4 +1,4 @@
-h1 {
+.profile-header {
     color: #777;
 	font-family: "Gill Sans", sans-serif;
 	text-align: Start;
@@ -9,7 +9,7 @@ h1 {
 	padding-top: 40px;
 }
 
-h2 {
+.profile-header-1 {
     color: #777;
 	font-family: "Gill Sans", sans-serif;
 	text-align: Start;
@@ -20,7 +20,7 @@ h2 {
 	padding-top: 40px;
 }
 
-.auth-btn {
+.profile-edit-btn {
 	background-color: black;
 	text-transform: uppercase;
     font-size: 0.8rem;
