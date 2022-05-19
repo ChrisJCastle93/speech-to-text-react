@@ -46,7 +46,8 @@ const cacheProduct = async (req, res, next) => {
   }
 };
 
-router.get("", cacheSearch, async (req, res) => {
+// router.get("/", cacheSearch, async (req, res) => {
+router.get("/", async (req, res) => {
   try {
     const { client } = req;
 
@@ -69,7 +70,8 @@ router.get("", cacheSearch, async (req, res) => {
   }
 });
 
-router.get("/results/:id", cacheProduct, async (req, res, next) => {
+// router.get("/results/:id", cacheProduct, async (req, res, next) => {
+router.get("/results/:id", async (req, res, next) => {
   try {
     const { client } = req;
 
