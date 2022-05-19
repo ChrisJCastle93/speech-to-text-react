@@ -1,6 +1,8 @@
 import React, {useState, useEffect} from 'react';
 import { CartItem } from "../components/cart/CartItem";
 import { cartService } from "../services/localStorage";
+import { NavLink } from 'react-router-dom';
+import "../css/profile.css";
 
 export default function Profile (props) {
   const wishlist = cartService.getFromLocalStorage("wishlist");
@@ -16,6 +18,7 @@ export default function Profile (props) {
     cartService.addToLocalStorage("wishlist", updatedWishlist);
 
   }
+
   
   // useEffect(() => {
   //   setWishlist(wishlist);
@@ -32,6 +35,7 @@ export default function Profile (props) {
                   <CartItem key={item.id} {...item} onClickDelete={onClickDelete} isWishList noQuantity/>
                 ))}
       </div>
+      <NavLink to="/profile/edit">Edit profile</NavLink>
     </div>
   )
 }

@@ -8,29 +8,36 @@ import {
   IconButton,
   useBreakpointValue,
   useColorModeValue,
+  Menu,
+  MenuButton,
+  MenuItem,
+  MenuList,
+  // AddIcon,
+  // RepeatIcon,
+  // ExternalLinkIcon,
+  // EditIcon
 } from '@chakra-ui/react'
 import * as React from 'react'
 import { FiMenu } from 'react-icons/fi'
 // import { Logo } from './Logo'
 import SearchContainer from './search/SearchContainer'
-import {NavLink} from 'react-router-dom';
+import {Link} from 'react-router-dom';
 import { useState } from "react";
 
 
 
  const Navbar = (props) => {
   const isDesktop = useBreakpointValue({ base: false, lg: true })
-  const { notDroppedDown, isDroppedDown } = useState(true);
+  // const { notDroppedDown, isDroppedDown } = useState(true);
+  const [isDropDown, setIsDropDown] = useState(true);
 
-  const onClick = () => {
-    const menu = notDroppedDown;
-    const displayMenu = menu(isDroppedDown);
-
-    isDroppedDown(displayMenu)
+  const openDropDown = () => {
+    setIsDropDown(true)
   };
 
-
-
+  const closeDropDown = () => {
+    setIsDropDown(false)
+  };
 
 
   return (
@@ -47,53 +54,86 @@ import { useState } from "react";
 
                     {/* <HStack spacing="3"> */}
                     <HStack spacing="3px">
-                        <NavLink to="/" activeclassname="active" className="auth-btn">Home</NavLink>
+                        <Link to="/" activeclassname="active" className="auth-btn">Home</Link>
                         {
                         !props.loggedInUser ?
                         <>
-                            <NavLink to="/signup" variant="primary" activeclassname="active" className="auth-btn">Signup</NavLink>
-                            <NavLink to="/login" variant="ghost" activeclassname="active" className="auth-btn">Login</NavLink>
+                            <Link to="/signup" variant="primary" activeclassname="active" className="auth-btn">Signup</Link>
+                            <Link to="/login" variant="ghost" activeclassname="active" className="auth-btn">Login</Link>
 
                         </>
                         :   
                         <>
-                            <NavLink to="/profile" variant="ghost" activeclassname="active" className="auth-btn">Profile</NavLink>
+                            <Link to="/profile" variant="ghost" activeclassname="active" className="auth-btn">Profile</Link>
                             <Button onClick={props.logoutHandler} variant="ghost" className="danger auth-btn">Log out</Button>              
                         </>
                         }
                     </HStack>
                 </Flex>
 
-
             )
             :
             ( 
                 <>
-                <IconButton
+                {/* <IconButton
                 variant="ghost"
                 icon={<FiMenu fontSize="1.25rem" />}
                 aria-label="Open Menu"
-                onClick={isDroppedDown} 
-                />
-                {
-                    isDroppedDown && (
-                    <Box as="section">
-                    {
+                onClick={openDropDown} 
+                /> */}
+                      <Menu>
+                      {/* <IconButton
+                        variant="ghost"
+                        icon={<FiMenu fontSize="1.25rem" />}
+                        aria-label="Open Menu"
+                        // onClick={closeDropDown} 
+                        /> */}
+                        <MenuButton
+    as={IconButton}
+    aria-label='Options'
+    icon={<FiMenu fontSize="1.25rem" />}
+    variant='outline'
+  />
+                        <MenuList>
+                        {
                     !props.loggedInUser ?
                         <>
-                            <NavLink to="/signup" variant="primary" activeclassname="active" className="auth-btn">Signup</NavLink>
-                            <NavLink to="/login" variant="ghost" activeclassname="active" className="auth-btn">Login</NavLink>
+                          {/* <MenuItem icon={<AddIcon />} command='⌘T'> */}
+                            <Link to="/signup" variant="primary" activeclassname="active" className="auth-btn">
+                          <MenuItem >
+                            Signup
+                          </MenuItem>
+                            </Link>
 
+                          {/* <MenuItem icon={<ExternalLinkIcon />} command='⌘N'> */}
+                            <Link to="/login" variant="ghost" activeclassname="active" className="auth-btn">
+                          <MenuItem >
+                            Login
+                          </MenuItem>
+                            </Link>
                         </>
                         :
                         <>
-                            <NavLink to="/profile" variant="ghost" activeclassname="active" className="auth-btn">Profile</NavLink>    
-                            <Button onClick={props.logoutHandler} variant="ghost" className="danger auth-btn">Log out</Button>              
-                        </>
-                    } 
-                    </Box>
-                )}
-                </>
+                          {/* <MenuItem icon={<RepeatIcon />} command='⌘⇧N'> */}
+                            <Link to="/profile" variant="ghost" activeclassname="active" className="auth-btn">
+                          <MenuItem >
+                            Profile
+                          </MenuItem>
+                            </Link>    
+
+                           <Button onClick={props.logoutHandler} variant="ghost" className="danger auth-btn">
+                          <MenuItem >
+                          {/*  <MenuItem icon={<EditIcon />} command='⌘O'> */}
+                           Log out
+                          </MenuItem>
+                           </Button>              
+                        </> 
+                        }
+                        </MenuList>
+                      </Menu>
+                
+            
+            </>
             )}
           </HStack>
         </Container>

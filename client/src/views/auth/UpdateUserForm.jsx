@@ -2,6 +2,8 @@ import React from "react";
 import apiService from "../services/auth";
 // import { Link, useNavigate } from 'react-router-dom';
 import { useForm } from "react-hook-form";
+import profileLamp from "../../assets/profileLamp.png";
+import "../../css/editProfile.css";
 
 export const UpdateUserForm = (props) => {
   // const navigate = useNavigate();
@@ -16,32 +18,37 @@ export const UpdateUserForm = (props) => {
 
   console.log(props.loggedInUser?.username)
   return (
-      <form onSubmit={handleSubmit(onSubmit)}>
-        <input 
-        // defaultValues={props.loggedInUser.username}
-        defaultValue={props.loggedInUser?.username}
-          {...register("username", {
-            // required: "Please enter a valid username",
-          })}
-          placeholder="Username"
-          name="username"
-        />
-        <p>{errors.username?.message}</p>
-
-        <input type="password" 
-        defaultValue={props.loggedInUser?.password}
-          {...register("password", {
-            // required: "This is required",
-            minLength: {
-              value: 8,
-              message: "Password must be over 8 characters",
-            },
-          })}
-          placeholder="enter a password"
-          name="password"
-        />
-        <p>{errors.password?.message}</p>
-        <button type="submit">Save changes</button>
-      </form>
+    <container>
+      <img className="prof-img" src ={profileLamp} alt="lamp-setting" />
+        <form onSubmit={handleSubmit(onSubmit)}>
+          <label className="label" for="profileEdit">Edit your username:</label>
+          <input 
+          // defaultValues={props.loggedInUser.username}
+          defaultValue={props.loggedInUser?.username}
+            {...register("username", {
+              // required: "Please enter a valid username",
+            })}
+            placeholder="Username"
+            name="username"
+          />
+          <p>{errors.username?.message}</p>
+            
+          <label className="label" for="profileEdit">Change your password:</label>
+          <input type="password" 
+          defaultValue={props.loggedInUser?.password}
+            {...register("password", {
+              // required: "This is required",
+              minLength: {
+                value: 8,
+                message: "Password must be over 8 characters",
+              },
+            })}
+            placeholder="enter a password"
+            name="password"
+          />
+          <p>{errors.password?.message}</p>
+          <button className="btn" type="submit">Save changes</button>
+        </form>
+      </container>
   );
 };
