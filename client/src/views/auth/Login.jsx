@@ -48,10 +48,12 @@ export const Login = (props) => {
           />
           <p>{errors.password?.message}</p>
           <button className="btn" type="submit">Login</button>
-          <h2 className="auth-h2">Don't have an account?</h2>
+          
         </form>
 
         <NavLink to="/signup" className="auth-btn">Sign up</NavLink>
+
+        <h2 className="auth-h2">Don't have an account?</h2>
         </div>
         <img className="auth-img" src ={authLamp} alt="lamp-setting" />
       </container>

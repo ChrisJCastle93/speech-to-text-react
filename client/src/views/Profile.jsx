@@ -34,7 +34,7 @@ export default function Profile (props) {
       <h1 className="profile-header">Get a light, {props.loggedInUser?.username}</h1>
 
       {/* <h3 className="profile-p">Scroll down for wishlist</h3> */}
-      <img className="auth-img" src ={paris} alt="lamp-setting" />
+      <img className="profile-img" src ={paris} alt="lamp-setting" />
       <h2 className="profile-header-1">Your wishlist</h2>
 
       <div className="wishlist">

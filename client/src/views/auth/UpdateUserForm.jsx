@@ -3,6 +3,7 @@ import apiService from "../services/auth";
 // import { Link, useNavigate } from 'react-router-dom';
 import { useForm } from "react-hook-form";
 import profileLamp from "../../assets/profileLamp.png";
+import lamp2 from "../../assets/lamp2.png"
 import "../../css/editProfile.css";
 
 export const UpdateUserForm = (props) => {
@@ -19,7 +20,10 @@ export const UpdateUserForm = (props) => {
   console.log(props.loggedInUser?.username)
   return (
     <container>
+    <div className="img-container">
       <img className="prof-img" src ={profileLamp} alt="lamp-setting" />
+      <img className="prof-img-2" src ={lamp2} alt="lamp-setting" />
+      </div>
         <form className="edit-credentials" onSubmit={handleSubmit(onSubmit)}>
           <label className="label" for="profileEdit">Edit your username:</label>
           <input 
