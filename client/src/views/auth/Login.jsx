@@ -50,12 +50,14 @@ export const Login = (props) => {
           <button className="btn" type="submit">Login</button>
           
         </form>
+        <h3 className="auth-head">Don't have an account?</h3>
+        <NavLink to="/signup" className="auth-btn-2">Sign up</NavLink>
 
-        <NavLink to="/signup" className="auth-btn">Sign up</NavLink>
-
-        <h2 className="auth-h2">Don't have an account?</h2>
+        
         </div>
-        <img className="auth-img" src ={authLamp} alt="lamp-setting" />
+        <div>
+          <img className="auth-img" src ={authLamp} alt="lamp-setting" />
+        </div>
       </container>
   );
 };

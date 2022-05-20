@@ -22,7 +22,7 @@ import { FiMenu } from 'react-icons/fi'
 // import { Logo } from './Logo'
 import SearchContainer from './search/SearchContainer'
 import {Link} from 'react-router-dom';
-import { useState } from "react";
+// import { useState } from "react";
 
 
 
@@ -41,9 +41,9 @@ import { useState } from "react";
 
 
   return (
-    <Box as="section" pb={{ base: '12', md: '24' }}>
+    <Box as="section" pb={{ base: '12', md: '24' }} style={{zIndex:1}}>
       <Box as="nav" bg="bg-surface" boxShadow={useColorModeValue('sm', 'sm-dark')}>
-        <Container py={{ base: '4', lg: '5' }}>
+        <Container py={{ base: '4', lg: '5' }} >
         {/* <HStack spacing="10" justify="space-between"> */}
         <HStack spacing="5px" justify="space-evenly">
             <SearchContainer  handleSearchResults={props.handleSearchResults}/>
@@ -60,11 +60,14 @@ import { useState } from "react";
                         <>
                             <Link to="/signup" variant="primary" activeclassname="active" className="auth-btn">Signup</Link>
                             <Link to="/login" variant="ghost" activeclassname="active" className="auth-btn">Login</Link>
+                            <Link to="/cart" variant="ghost" activeclassname="active" className="auth-btn">Cart</Link> 
+
 
                         </>
                         :   
                         <>
                             <Link to="/profile" variant="ghost" activeclassname="active" className="auth-btn">Profile</Link>
+                            <Link to="/cart" variant="ghost" activeclassname="active" className="auth-btn">Cart</Link> 
                             <Button onClick={props.logoutHandler} variant="ghost" className="danger auth-btn">Log out</Button>              
                         </>
                         }
@@ -105,37 +108,49 @@ import { useState } from "react";
                         {
                     !props.loggedInUser ?
                         <>
-                          {/* <MenuItem icon={<AddIcon />} command='⌘T'> */}
+
                             <Link to="/signup" variant="primary" activeclassname="active" className="auth-btn">
                           <MenuItem >
                             Signup
                           </MenuItem>
                             </Link>
 
-                          {/* <MenuItem icon={<ExternalLinkIcon />} command='⌘N'> */}
+
                             <Link to="/login" variant="ghost" activeclassname="active" className="auth-btn">
                           <MenuItem >
                             Login
                           </MenuItem>
                             </Link>
+
+                            <Link to="/cart" variant="ghost" activeclassname="active" className="auth-btn">
+                          <MenuItem >
+                            View cart
+                          </MenuItem>
+                            </Link> 
                         </>
                         :
                         <>
-                          {/* <MenuItem icon={<RepeatIcon />} command='⌘⇧N'> */}
+
                             <Link to="/profile" variant="ghost" activeclassname="active" className="auth-btn">
                           <MenuItem >
                             Profile
                           </MenuItem>
-                            </Link>    
+                            </Link>  
+
+                          <Link to="/cart" variant="ghost" activeclassname="active" className="auth-btn">
+                          <MenuItem >
+                            View cart
+                          </MenuItem>
+                            </Link>   
 
                            <Button onClick={props.logoutHandler} variant="ghost" className="danger auth-btn">
                           <MenuItem >
-                          {/*  <MenuItem icon={<EditIcon />} command='⌘O'> */}
                            Log out
                           </MenuItem>
                            </Button>              
                         </> 
                         }
+
                         </MenuList>
                       </Menu>
                 
@@ -149,3 +164,12 @@ import { useState } from "react";
   )
 }
 export default Navbar;
+
+// position: static;
+// color: black;
+// font-family: "Gill Sans", sans-serif;
+// text-align: end;
+//   letter-spacing: .15rem;
+// font-size: 18px;
+// padding: 5px 180px;
+// z-index: 1;

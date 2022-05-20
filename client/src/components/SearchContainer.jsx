@@ -4,6 +4,7 @@ import React, { useEffect, useState } from "react";
 import SearchBar from "../components/SearchBar";
 import Microphone from "../components/Microphone";
 import { useNavigate } from "react-router-dom";
+// import { Center, HStack} from '@chakra-ui/react';
 
 export default function SearchContainer(props) {
   let [searchTerm, setSearchTerm] = useState("");

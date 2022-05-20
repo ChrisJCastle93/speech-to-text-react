@@ -33,8 +33,7 @@ export const Signup = (props) => {
   return (
     <container className="auth-container">
       <div className="auth-div">
-        <h1 >Become a VIP, 
-        it's hot</h1>
+        <h1 >Become a VIP,<p></p>it's hot</h1>
           <form className="auth-form" onSubmit={handleSubmit(onSubmit)}>
           <label className="label" for="signup">Username:</label>
             <input
@@ -68,12 +67,15 @@ export const Signup = (props) => {
             />
             <p>{errors.password?.message}</p>
             <button className="btn" type="submit">Sign up</button>
-            <h2 className="auth-h2">Already have an account?</h2>
 
           </form>
-          <NavLink to="/login" className="auth-btn">Log in</NavLink>
-          </div>
+          <h3 className="auth-head">Alread have an account?</h3>
+          <NavLink to="/login" className="auth-btn-2">Log in</NavLink>  
+        </div>
+        <div >
           <img className="auth-img" src ={authLamp} alt="lamp-setting" />
+        </div>
+          
     </container>
   );
 };
