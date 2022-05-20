@@ -46,15 +46,15 @@ const cacheProduct = async (req, res, next) => {
   }
 };
 
-// router.get("/", cacheSearch, async (req, res) => {
-router.get("/", async (req, res) => {
+router.get("/", cacheSearch, async (req, res) => {
+// router.get("/", async (req, res) => {
   try {
     const { client } = req;
 
     const amazonSearchQuery = req.query.q.replaceAll("+", " ");
 
     const params = {
-      api_key: "E88D8E7E60414947A17F2AD00221C1F9",
+      api_key: process.env.RAINFOREST_API_KEY,
       type: "search",
       amazon_domain: "amazon.de",
       search_term: amazonSearchQuery,
@@ -70,8 +70,8 @@ router.get("/", async (req, res) => {
   }
 });
 
-// router.get("/results/:id", cacheProduct, async (req, res, next) => {
-router.get("/results/:id", async (req, res, next) => {
+router.get("/results/:id", cacheProduct, async (req, res, next) => {
+// router.get("/results/:id", async (req, res, next) => {
   try {
     const { client } = req;
 
@@ -80,7 +80,7 @@ router.get("/results/:id", async (req, res, next) => {
     console.log('PRODUCT TO SEARCH', productToSearch)
 
     const params = {
-      api_key: "E88D8E7E60414947A17F2AD00221C1F9",
+      api_key: process.env.RAINFOREST_API_KEY,
       type: "product",
       amazon_domain: "amazon.de",
       asin: productToSearch,

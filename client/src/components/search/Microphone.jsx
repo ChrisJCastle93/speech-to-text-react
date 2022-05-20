@@ -1,18 +1,15 @@
 import React, { useState } from "react";
 import { speechToTextService } from "../../services/speechToText";
 import { MicrophoneIcon, StopIcon } from "@heroicons/react/solid";
-import { IconButton, Spinner, Box } from "@chakra-ui/react";
+import { IconButton, Spinner } from "@chakra-ui/react";
 
 export default function Microphone(props) {
-  let [micButtonDisplay, setMicButtonDisplay] = useState(true);
-  let [stopButtonDisplay, setStopButtonDisplay] = useState(false);
-  let [spinnerDisplay, setSpinnerDisplay] = useState(false);
+  let [micButtonDisplay, setMicButtonDisplay] = useState("block");
+  let [stopButtonDisplay, setStopButtonDisplay] = useState("none");
+  let [spinnerDisplay, setSpinnerDisplay] = useState("none");
 
   const recordMicrophone = async (e) => {
-    const stream = await navigator.mediaDevices.getUserMedia({
-      audio: true,
-      video: false,
-    });
+    const stream = await navigator.mediaDevices.getUserMedia({ audio: true, video: false });
     recordUserAudio(stream);
     setMicButtonDisplay("none");
     setStopButtonDisplay("block");
@@ -59,26 +56,12 @@ export default function Microphone(props) {
   };
 
   return (
-    <Box>
+    <div>
       <form onSubmit={props.handleSubmit}>
-        {stopButtonDisplay && (
-          <IconButton
-            p={2}
-            icon={<StopIcon />}
-            type="submit"
-            id="stop"
-          ></IconButton>
-        )}
-        {spinnerDisplay && <Spinner display={spinnerDisplay} />}
-        {micButtonDisplay && (
-          <IconButton
-            p={2}
-            icon={<MicrophoneIcon />}
-            display={micButtonDisplay}
-            onClick={(e) => recordMicrophone(e)}
-          ></IconButton>
-        )}
+        <IconButton p={2} icon={<StopIcon />} display={stopButtonDisplay} type="submit" id="stop"></IconButton>
       </form>
-    </Box>
+      <Spinner display={spinnerDisplay} />
+      <IconButton p={2} icon={<MicrophoneIcon />} display={micButtonDisplay} onClick={(e) => recordMicrophone(e)}></IconButton>
+    </div>
   );
 }
