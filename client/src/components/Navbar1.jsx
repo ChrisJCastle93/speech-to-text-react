@@ -22,7 +22,7 @@ import { FiMenu } from 'react-icons/fi'
 // import { Logo } from './Logo'
 import SearchContainer from './search/SearchContainer'
 import {Link} from 'react-router-dom';
-import { useState } from "react";
+// import { useState } from "react";
 
 
 
@@ -41,9 +41,9 @@ import { useState } from "react";
 
 
   return (
-    <Box as="section" pb={{ base: '12', md: '24' }}>
+    <Box as="section" pb={{ base: '12', md: '24' }} style={{zIndex:1}}>
       <Box as="nav" bg="bg-surface" boxShadow={useColorModeValue('sm', 'sm-dark')}>
-        <Container py={{ base: '4', lg: '5' }}>
+        <Container py={{ base: '4', lg: '5' }} >
         {/* <HStack spacing="10" justify="space-between"> */}
         <HStack spacing="5px" justify="space-evenly">
             <SearchContainer  handleSearchResults={props.handleSearchResults}/>
@@ -68,6 +68,7 @@ import { useState } from "react";
                             <Button onClick={props.logoutHandler} variant="ghost" className="danger auth-btn">Log out</Button>              
                         </>
                         }
+                        <Link to="/cart" variant="ghost" activeclassname="active" className="auth-btn">Cart</Link> 
                     </HStack>
                 </Flex>
 
@@ -136,6 +137,11 @@ import { useState } from "react";
                            </Button>              
                         </> 
                         }
+                        <Link to="/cart" variant="ghost" activeclassname="active" className="auth-btn">
+                          <MenuItem >
+                            View cart
+                          </MenuItem>
+                            </Link> 
                         </MenuList>
                       </Menu>
                 
@@ -149,3 +155,12 @@ import { useState } from "react";
   )
 }
 export default Navbar;
+
+// position: static;
+// color: black;
+// font-family: "Gill Sans", sans-serif;
+// text-align: end;
+//   letter-spacing: .15rem;
+// font-size: 18px;
+// padding: 5px 180px;
+// z-index: 1;
