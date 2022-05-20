@@ -60,15 +60,17 @@ import {Link} from 'react-router-dom';
                         <>
                             <Link to="/signup" variant="primary" activeclassname="active" className="auth-btn">Signup</Link>
                             <Link to="/login" variant="ghost" activeclassname="active" className="auth-btn">Login</Link>
+                            <Link to="/cart" variant="ghost" activeclassname="active" className="auth-btn">Cart</Link> 
+
 
                         </>
                         :   
                         <>
                             <Link to="/profile" variant="ghost" activeclassname="active" className="auth-btn">Profile</Link>
+                            <Link to="/cart" variant="ghost" activeclassname="active" className="auth-btn">Cart</Link> 
                             <Button onClick={props.logoutHandler} variant="ghost" className="danger auth-btn">Log out</Button>              
                         </>
                         }
-                        <Link to="/cart" variant="ghost" activeclassname="active" className="auth-btn">Cart</Link> 
                     </HStack>
                 </Flex>
 
@@ -106,42 +108,49 @@ import {Link} from 'react-router-dom';
                         {
                     !props.loggedInUser ?
                         <>
-                          {/* <MenuItem icon={<AddIcon />} command='⌘T'> */}
+
                             <Link to="/signup" variant="primary" activeclassname="active" className="auth-btn">
                           <MenuItem >
                             Signup
                           </MenuItem>
                             </Link>
 
-                          {/* <MenuItem icon={<ExternalLinkIcon />} command='⌘N'> */}
+
                             <Link to="/login" variant="ghost" activeclassname="active" className="auth-btn">
                           <MenuItem >
                             Login
                           </MenuItem>
                             </Link>
+
+                            <Link to="/cart" variant="ghost" activeclassname="active" className="auth-btn">
+                          <MenuItem >
+                            View cart
+                          </MenuItem>
+                            </Link> 
                         </>
                         :
                         <>
-                          {/* <MenuItem icon={<RepeatIcon />} command='⌘⇧N'> */}
+
                             <Link to="/profile" variant="ghost" activeclassname="active" className="auth-btn">
                           <MenuItem >
                             Profile
                           </MenuItem>
-                            </Link>    
+                            </Link>  
+
+                          <Link to="/cart" variant="ghost" activeclassname="active" className="auth-btn">
+                          <MenuItem >
+                            View cart
+                          </MenuItem>
+                            </Link>   
 
                            <Button onClick={props.logoutHandler} variant="ghost" className="danger auth-btn">
                           <MenuItem >
-                          {/*  <MenuItem icon={<EditIcon />} command='⌘O'> */}
                            Log out
                           </MenuItem>
                            </Button>              
                         </> 
                         }
-                        <Link to="/cart" variant="ghost" activeclassname="active" className="auth-btn">
-                          <MenuItem >
-                            View cart
-                          </MenuItem>
-                            </Link> 
+
                         </MenuList>
                       </Menu>
                 
