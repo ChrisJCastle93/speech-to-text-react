@@ -34,9 +34,15 @@ container{
 .prof-img{
 	/* width: 100%;
 	height: 100%; */
+	object-fit: cover;
+	background-position: cover;
+    background-repeat: no-repeat;
+    background-size: cover;
+    width: 100%;
+    height: 500px;
     z-index: 0;
-	height: 100%;
-	width: 50vw;
+	/* height: 100%;
+	width: 50vw; */
 	/* align-self: flex-end; */
 	/* background-color: red; */
 }
