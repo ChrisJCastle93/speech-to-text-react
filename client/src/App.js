@@ -18,7 +18,10 @@ import Checkout from './views/checkout/Checkout';
 // import AuthButtonDisplay from "./components/AuthButtonDisplay";
 import { UpdateUserForm } from "./views/auth/UpdateUserForm";
 import Navbar from './components/Navbar1';
-import '../src/css/authForm.css'
+import '../src/css/authForm.css';
+import Footer from './components/search/Footer';
+import Header from './components/search/Header';
+
 
 
 function App() {
@@ -49,12 +52,14 @@ function App() {
   };
 
   return (
+  
 
     <ChakraProvider>
     {loading ? (
       <div>Loading.....</div>
     ) : (
         <div className="App">
+            <Header/>
         <Navbar 
             loggedInUser={loggedInUser}
             logoutHandler={logoutHandler}
@@ -80,6 +85,9 @@ function App() {
             <Route path="/search/results/:id" element={<ProductDetail />} />
             <Route path="/checkout/:id" element={<Checkout loggedInUser={loggedInUser} />} />
           </Routes>
+         
+
+          <Footer/>
         </div>
         )}
     </ChakraProvider>

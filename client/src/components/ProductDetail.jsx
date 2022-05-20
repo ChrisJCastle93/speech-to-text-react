@@ -105,6 +105,8 @@ function ProductDetail() {
       .catch((err) => console.log(err));
   }, [productId]);
 
+console.log(product)
+
   return (
     <Container maxW={"7xl"}>
       {isLoading ? (
