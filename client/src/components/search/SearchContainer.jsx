@@ -41,7 +41,7 @@ export default function SearchContainer(props) {
   };
 
   return (
-    <Box className="searchContainer">
+    <Box  display="flex">
       {/* <Center>
         <HStack mt={10}> */}
           <SearchBar searchTerm={searchTerm} searchHandler={searchHandler} handleSubmit={handleSubmit}  />

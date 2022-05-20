@@ -1,0 +1,40 @@
+.profile-header {
+    color: #777;
+	font-family: "Gill Sans", sans-serif;
+	text-align: Start;
+    letter-spacing: .15rem;
+	font-size: 56px;
+	margin: 28px auto;
+	margin-bottom: 20px;
+	padding-top: 40px;
+}
+
+.profile-header-1 {
+    color: #777;
+	font-family: "Gill Sans", sans-serif;
+	text-align: Start;
+    letter-spacing: .15rem;
+	font-size: 45px;
+	margin: 28px auto;
+	margin-bottom: 20px;
+	padding-top: 40px;
+}
+
+.profile-edit-btn {
+	background-color: black;
+	text-transform: uppercase;
+    font-size: 0.8rem;
+    letter-spacing: .15rem;
+	color: #fff;
+	line-height: 25px;
+	cursor: pointer;
+	border-radius: 3px;
+	border: 2px solid transparent;
+	margin: 10px 0;
+	padding: 3px 5px; 
+}
+
+.profile-img {
+    width: 100%;
+	object-fit: contain;
+}
