@@ -69,8 +69,10 @@ export const Signup = (props) => {
             <button className="btn" type="submit">Sign up</button>
 
           </form>
-          <h3 className="auth-head">Alread have an account?</h3>
-          <NavLink to="/login" className="auth-btn-2">Log in</NavLink>  
+          <div className="auth-nav-div">
+            <h3 className="auth-head">Already have an account?</h3>
+            <NavLink to="/login" className="auth-btn-2">Log in</NavLink>  
+          </div>
         </div>
         <div >
           <img className="auth-img" src ={authLamp} alt="lamp-setting" />
