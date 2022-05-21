@@ -47,7 +47,7 @@ export const ProductCard = (props) => {
         </HStack>
       </Stack>
       <Button colorScheme='teal'>
-      <Link to={`/search/results/${product.asin}`}>
+      <Link to={`/search/results/${product.asin}/${price.value}`}>
          More Info
       </Link>
       </Button>

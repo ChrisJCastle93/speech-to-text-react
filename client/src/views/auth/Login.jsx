@@ -20,11 +20,11 @@ export const Login = (props) => {
   };
 
   return (
-    <container className="auth-container">
+    <div className="auth-container">
       <div className="auth-div">
       <h1>Welcome back</h1>
         <form className="auth-form" onSubmit={handleSubmit(onSubmit)}>
-        <label className="label" for="login">Username:</label>
+        <label className="label" htmlFor="login">Username:</label>
           <input className="input"
             {...register("username", {
               required: "Please enter a valid username",
@@ -34,7 +34,7 @@ export const Login = (props) => {
           />
           <p>{errors.username?.message}</p>
           
-          <label className="label" for="password">Password:</label>
+          <label className="label" htmlFor="password">Password:</label>
           <input type="password"
             {...register("password", {
               required: "This is required",
@@ -59,6 +59,6 @@ export const Login = (props) => {
         <div>
           <img className="auth-img" src ={authLamp} alt="lamp-setting" />
         </div>
-      </container>
+      </div>
   );
 };
