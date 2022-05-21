@@ -17,6 +17,7 @@ export const CartOrderSummary = (props) => {
   const navigate = useNavigate()
 
   const loginRedirect = () => {
+    props.loginToCheckout()
     navigate('/login')
   };
 

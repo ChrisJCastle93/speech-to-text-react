@@ -27,6 +27,11 @@ import { cartService } from './services/localStorage';
 
 function App() {
   let [searchResultsArray, setSearchResultsArray] = useState([]);
+  let [cameFromCheckout, setCameFromCheckout] = useState(false);
+
+  const loginToCheckout = () => {
+    setCameFromCheckout(true)
+  }
 
   const cart = cartService.getFromLocalStorage("cart");
 
@@ -83,10 +88,10 @@ function App() {
           <Routes>
             <Route path="/" element={<Home loggedInUser={loggedInUser} />} />
             <Route path="/test" element={<Test />} />
-            <Route path="/cart" element={<Cart loggedInUser={loggedInUser} />} />
+            <Route path="/cart" element={<Cart loggedInUser={loggedInUser} loginToCheckout={loginToCheckout} />} />
             <Route path="/profile/edit" element={<UpdateUserForm loggedInUser={loggedInUser} setLoggedInUser={setLoggedInUser}/>} />
             <Route path="/signup" element={<Signup setLoggedInUser={setLoggedInUser}/>} />
-            <Route path="/login" element={<Login setLoggedInUser={setLoggedInUser}/>} />
+            <Route path="/login" element={<Login cameFromCheckout={cameFromCheckout} setLoggedInUser={setLoggedInUser}/>} />
             <Route path="/profile" element={<Profile loggedInUser={loggedInUser}/>} />
             <Route path="/search" element={<SearchContainer handleSearchResults={handleSearchResults} />} />
             <Route path="/search/results" element={<SearchResults searchResultsArray={searchResultsArray} />} />
