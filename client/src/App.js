@@ -21,11 +21,19 @@ import Navbar from './components/Navbar1';
 import '../src/css/authForm.css';
 import Footer from './components/search/Footer';
 import Header from './components/search/Header';
+import { cartService } from './services/localStorage';
 
 
 
 function App() {
   let [searchResultsArray, setSearchResultsArray] = useState([]);
+
+  const cart = cartService.getFromLocalStorage("cart");
+
+  if(!cart) {
+   const resetCart = [];
+   cartService.addToLocalStorage('cart', resetCart)
+  }
 
   const navigate = useNavigate();
 
