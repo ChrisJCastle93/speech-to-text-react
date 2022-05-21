@@ -54,7 +54,7 @@ router.get("/", cacheSearch, async (req, res) => {
     const amazonSearchQuery = req.query.q.replaceAll("+", " ");
 
     const params = {
-      api_key: process.env.RAINFOREST_API_KEY,
+      api_key: process.env.RAINFOREST,
       type: "search",
       amazon_domain: "amazon.de",
       search_term: amazonSearchQuery,
@@ -80,7 +80,7 @@ router.get("/results/:id", cacheProduct, async (req, res, next) => {
     console.log('PRODUCT TO SEARCH', productToSearch)
 
     const params = {
-      api_key: process.env.RAINFOREST_API_KEY,
+      api_key: process.env.RAINFOREST,
       type: "product",
       amazon_domain: "amazon.de",
       asin: productToSearch,
