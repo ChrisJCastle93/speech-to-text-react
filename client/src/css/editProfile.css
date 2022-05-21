@@ -44,7 +44,8 @@ container{
 	/* width: 100%;
 	height: 100%; */
     z-index: 0;
-	width: 50vw;
+    height: 500px;
+	/* width: 50vw; */
 	/* padding: 0 0 0 10%; */
 	/* position: fixed; */
 	bottom: 5;
