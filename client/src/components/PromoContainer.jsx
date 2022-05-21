@@ -25,7 +25,7 @@ export default function PromoContainer() {
       <section id="promo-box">
         {listOfPromo.map((x) => {
           return (
-            <Link key={x.link} to={`/search/results/${x.asin}`}>
+            <Link key={x.link} to={`/search/results/${x.asin}/${x.price.value}`}>
 
               <Box m={2} maxW='sm' borderWidth='1px' borderRadius='lg' overflow='hidden'>
                 <Image src={x.image} id="promo" />

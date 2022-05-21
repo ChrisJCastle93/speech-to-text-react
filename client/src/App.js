@@ -90,7 +90,7 @@ function App() {
             <Route path="/profile" element={<Profile loggedInUser={loggedInUser}/>} />
             <Route path="/search" element={<SearchContainer handleSearchResults={handleSearchResults} />} />
             <Route path="/search/results" element={<SearchResults searchResultsArray={searchResultsArray} />} />
-            <Route path="/search/results/:id" element={<ProductDetail />} />
+            <Route path="/search/results/:id/:price" element={<ProductDetail />} />
             <Route path="/checkout/:id" element={<Checkout loggedInUser={loggedInUser} />} />
           </Routes>
          

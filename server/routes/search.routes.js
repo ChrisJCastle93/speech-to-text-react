@@ -80,8 +80,7 @@ router.get("/results/:id", cacheProduct, async (req, res, next) => {
     console.log('PRODUCT TO SEARCH', productToSearch)
 
     const params = {
-      // api_key: process.env.RAINFOREST_API_KEY,
-      api_key: E84C1BDD6ED94956929CB705087D09EF,
+      api_key: process.env.RAINFOREST_API_KEY,
       type: "product",
       amazon_domain: "amazon.de",
       asin: productToSearch,

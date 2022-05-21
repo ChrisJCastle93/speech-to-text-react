@@ -13,6 +13,7 @@ function ProductDetail() {
   const [isWishListed, setIsWishListed] = useState(false);
   const params = useParams();
   const productId = params.id;
+  const priceParam = params.price;
   const navigate = useNavigate();
 
   const resetCart = () => {
@@ -24,17 +25,18 @@ function ProductDetail() {
 
     let newCart = [...cart];
 
-    let cartPrice = 10;
-    if (product.price) {
-      cartPrice = product.price.value;
-    }
+    // let cartPrice = 10;
+    // if (product.price) {
+    //   cartPrice = product.price.value;
+    // }
 
     const cartProduct = {
       id: product.asin,
       name: product.title,
-      price: cartPrice,
+      price: priceParam,
       // price: product.variants[0].price.value,
-      image: product.variants[0].main_image,
+      // image: product.variants[0].main_image,
+      image: product.main_image.link,
       quantity: 1,
     };
 
@@ -121,20 +123,23 @@ console.log(product)
               <Heading lineHeight={1.1} fontWeight={600} fontSize={{ base: "xl", sm: "2xl", lg: "3xl" }}>
                 {product.title}
               </Heading>
-              {product.variants[0].price ? (
+              {/* {product.variants[0].price ? (
                 <Text color="gray.900" fontWeight={300} fontSize={"2xl"}>
-                  {product.variants[0].price.value} {product.variants[0].price.symbol}
+                {product.variants[0].price.value} {product.variants[0].price.symbol}
                 </Text>
-              ) : (
-                <p>NO PRICE FOUND</p>
-              )}
+                ) : (
+                  <p>{priceParam}</p>
+                )} */}
+                <Text color="gray.900" fontWeight={300} fontSize={"2xl"}>
+                  € {priceParam}
+                </Text>
             </Box>
 
             <Stack spacing={{ base: 4, sm: 6 }} direction={"column"} divider={<StackDivider color="gray.500" />}>
               <VStack spacing={{ base: 4, sm: 6 }}>
                 {product.description ? (
                   <Text color="gray.500" fontSize={"2xl"} fontWeight={"300"}>
-                    Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore
+                    {product.description}
                   </Text>
                 ) : (
                   <></>
