@@ -73,8 +73,8 @@ function ProductDetail() {
     const wishlistProduct = {
       id: product.asin,
       name: product.title,
-      price: product.variants[0].price.value,
-      image: product.variants[0].main_image,
+      price: priceParam,
+      image: product.main_image.link,
       quantity: 1,
     };
 
