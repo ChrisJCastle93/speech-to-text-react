@@ -106,7 +106,8 @@ const Navbar = (props) => {
                         className="danger auth-btn"
                       >
                         Log out
-                      </Button>
+                      </Button> 
+                   
                     </>
                   )}
                 </HStack>
@@ -203,6 +204,7 @@ const Navbar = (props) => {
         </Container>
       </Box>
     </Box>
+    
   );
 };
 export default Navbar;

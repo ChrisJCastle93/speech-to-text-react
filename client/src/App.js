@@ -18,11 +18,27 @@ import Checkout from './views/checkout/Checkout';
 // import AuthButtonDisplay from "./components/AuthButtonDisplay";
 import { UpdateUserForm } from "./views/auth/UpdateUserForm";
 import Navbar from './components/Navbar1';
-import '../src/css/authForm.css'
+import '../src/css/authForm.css';
+import Footer from './components/search/Footer';
+import Header from './components/search/Header';
+import { cartService } from './services/localStorage';
+
 
 
 function App() {
   let [searchResultsArray, setSearchResultsArray] = useState([]);
+  let [cameFromCheckout, setCameFromCheckout] = useState(false);
+
+  const loginToCheckout = () => {
+    setCameFromCheckout(true)
+  }
+
+  const cart = cartService.getFromLocalStorage("cart");
+
+  if(!cart) {
+   const resetCart = [];
+   cartService.addToLocalStorage('cart', resetCart)
+  }
 
   const navigate = useNavigate();
 
@@ -49,12 +65,14 @@ function App() {
   };
 
   return (
+  
 
     <ChakraProvider>
     {loading ? (
       <div>Loading.....</div>
     ) : (
         <div className="App">
+            <Header/>
         <Navbar 
             loggedInUser={loggedInUser}
             logoutHandler={logoutHandler}
@@ -70,16 +88,19 @@ function App() {
           <Routes>
             <Route path="/" element={<Home loggedInUser={loggedInUser} />} />
             <Route path="/test" element={<Test />} />
-            <Route path="/cart" element={<Cart loggedInUser={loggedInUser} />} />
+            <Route path="/cart" element={<Cart loggedInUser={loggedInUser} loginToCheckout={loginToCheckout} />} />
             <Route path="/profile/edit" element={<UpdateUserForm loggedInUser={loggedInUser} setLoggedInUser={setLoggedInUser}/>} />
             <Route path="/signup" element={<Signup setLoggedInUser={setLoggedInUser}/>} />
-            <Route path="/login" element={<Login setLoggedInUser={setLoggedInUser}/>} />
+            <Route path="/login" element={<Login cameFromCheckout={cameFromCheckout} setLoggedInUser={setLoggedInUser}/>} />
             <Route path="/profile" element={<Profile loggedInUser={loggedInUser}/>} />
             <Route path="/search" element={<SearchContainer handleSearchResults={handleSearchResults} />} />
             <Route path="/search/results" element={<SearchResults searchResultsArray={searchResultsArray} />} />
-            <Route path="/search/results/:id" element={<ProductDetail />} />
+            <Route path="/search/results/:id/:price" element={<ProductDetail />} />
             <Route path="/checkout/:id" element={<Checkout loggedInUser={loggedInUser} />} />
           </Routes>
+         
+
+          <Footer/>
         </div>
         )}
     </ChakraProvider>
